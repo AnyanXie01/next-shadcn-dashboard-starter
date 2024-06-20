@@ -51,9 +51,9 @@ export default function Header() {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/dashboard">
+                <Link href="/dashboard/companyInformation">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Settings
+                    Company Infomation
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
