@@ -1,4 +1,5 @@
 import React from 'react';
+import './style.css';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,70 +12,81 @@ import {
   SelectValue
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Separator } from '@/components/ui/separator';
 
 const GeneralInformation = () => {
   return (
     <div>
-      <div className="flex h-14 items-center justify-between px-4">
+      <div className="flex h-14 items-center justify-between px-8">
         <h1 className="text-3xl font-bold">General Information</h1>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
           <Button>Save</Button>
         </div>
       </div>
 
       <div className="container mx-auto p-8">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-24 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <div className="mb-6">
+            <div className="mb-6 grid grid-cols-1 gap-y-4">
               <h2 className="mb-2 text-lg font-semibold">Brand Information</h2>
 
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium">
+                <label className="mb-1 block text-sm font-medium text-gray-500">
                   Company Name
                 </label>
-                <Input className="w-full" placeholder="Fei qi chu hai" />
+                <Input
+                  className="input-color w-full"
+                  placeholder="Fei qi chu hai"
+                />
               </div>
 
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium">
+                <label className="mb-1 block text-sm font-medium text-gray-500">
                   Official website
                 </label>
-                <Input className="w-full" placeholder="http://" />
+                <Input className="input-color w-full" placeholder="http://" />
               </div>
 
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium">
+                <label className="mb-1 block text-sm font-medium text-gray-500">
                   Shop website
                 </label>
-                <Input className="w-full" placeholder="http://" />
+                <Input className="input-color w-full" placeholder="http://" />
               </div>
 
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium">
+                <label className="mb-1 block text-sm font-medium text-gray-500">
                   Brand name
                 </label>
-                <Input className="w-full" placeholder="Fei" />
+                <Input className="input-color w-full" placeholder="Fei" />
               </div>
 
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium">
+                <label className="mb-1 block text-sm font-medium text-gray-500">
                   Brand Description
                 </label>
-                <Textarea className="w-full" placeholder="Brand description" />
+                <Textarea
+                  className="input-color w-full"
+                  placeholder="Brand description"
+                />
               </div>
+
+              <Separator className="w-full" />
 
               <div className="mb-6">
                 <h3 className="mb-2 text-lg font-semibold">Style</h3>
-                <div className="border-2 border-dashed border-gray-300 p-4 text-center">
-                  <Button variant="outline" className="mb-2">
-                    Add File
-                  </Button>
-                  <p className="text-sm text-gray-600">
-                    Or drag and drop files
-                  </p>
+                <div className="flex h-48 flex-col items-center justify-center border-2 border-dashed border-gray-300 p-4 text-center">
+                  <div>
+                    <Input className="mb-2 " id="file" type="file" />
+                    <p className="text-sm text-gray-600">
+                      Or drag and drop files
+                    </p>
+                  </div>
                 </div>
               </div>
+
+              <Separator className="w-full" />
 
               <div>
                 <h3 className="mb-2 text-lg font-semibold">Competitors</h3>
@@ -90,7 +102,7 @@ const GeneralInformation = () => {
                       Competitor1
                     </label>
                     <Select>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="SelectTrigger w-full">
                         <SelectValue placeholder="chuhai" />
                       </SelectTrigger>
                       <SelectContent>
@@ -106,18 +118,22 @@ const GeneralInformation = () => {
 
           <div className="lg:col-span-1">
             <div className="mb-4">
-              <h2 className="mb-2 text-lg font-semibold">
+              <h2 className="mb-2 text-lg font-semibold ">
                 Company Information
               </h2>
 
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium">Title</label>
-                <Input className="w-full" placeholder="Title" />
+                <label className="mb-1 block text-sm font-medium text-gray-500">
+                  Title
+                </label>
+                <Input className="w-full" />
               </div>
 
               <div className="mb-4">
-                <label className="mb-1 block text-sm font-medium">Email</label>
-                <Input className="w-full" placeholder="Email" />
+                <label className="mb-1 block text-sm font-medium text-gray-500">
+                  Email
+                </label>
+                <Input className="w-full" />
               </div>
             </div>
           </div>
