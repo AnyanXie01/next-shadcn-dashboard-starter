@@ -27,15 +27,7 @@ import {
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue
-} from '@/components/ui/select';
+
 import {
   Table,
   TableBody,
@@ -45,44 +37,260 @@ import {
   TableRow
 } from '@/components/ui/table';
 
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+
 const data: Payment[] = [
   {
-    id: 'm5gr84i9',
-    amount: 316,
-    status: 'success',
-    email: 'ken99@yahoo.com'
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
   },
   {
-    id: '3u1reuv4',
-    amount: 242,
-    status: 'success',
-    email: 'Abe45@gmail.com'
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
   },
   {
-    id: 'derv1ws0',
-    amount: 837,
-    status: 'processing',
-    email: 'Monserrat44@gmail.com'
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
   },
   {
-    id: '5kma53ae',
-    amount: 874,
-    status: 'success',
-    email: 'Silas22@gmail.com'
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
   },
   {
-    id: 'bhqecj4p',
-    amount: 721,
-    status: 'failed',
-    email: 'carmella@hotmail.com'
-  }
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
+  {
+    id: 1,
+    price: 49.9,
+    color: "Black",
+    rating: 5.0,
+    num_votes: 32,
+    inventory: 96,
+    product_name: "Men Grey Hoodie",
+    product_type: "Hoodies",
+    product_image: "https://picsum.photos/300/300"
+  },
 ];
 
 type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
+  id: number;
+  price: number
+  color: string
+  rating: number
+  num_votes: number
+  inventory: number
+  product_name: string
+  product_type: string
+  product_image: string
 };
 
 const columns: ColumnDef<Payment>[] = [
@@ -109,71 +317,60 @@ const columns: ColumnDef<Payment>[] = [
     enableHiding: false
   },
   {
-    accessorKey: 'status',
-    header: 'Status',
+    accessorKey: 'product_name',
+    header: 'Product',
+    cell: ({ row }) => {
+      const imageLink = row.original.product_image
+      return (
+      <div className="image-align">
+        <img src={imageLink} alt={row.getValue('product_name')} className="product-image" />
+        <div className="product-info">
+          <span className="product-name">{row.getValue('product_name')}</span>
+          <span className="product-category">{row.original.product_type}</span>
+        </div>
+      </div>
+      )
+    }
+  },
+  {
+    accessorKey: 'inventory',
+    header: () => <div>Inventory</div>,
+    cell: ({ row }) => {
+      const inventory = row.getValue('inventory') as number;
+      return (
+        <div className="capitalize">
+          {inventory > 0 ? `${inventory} In Stock` : 'Out of stock'}
+        </div>
+      )
+    }
+  },
+  {
+    accessorKey: 'color',
+    header: 'Color',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('status')}</div>
+      <div className="capitalize">{row.getValue('color')}</div>
     )
   },
   {
-    accessorKey: 'email',
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue('email')}</div>
-  },
-  {
-    accessorKey: 'amount',
-    header: () => <div className="text-right">Amount</div>,
+    accessorKey: 'price',
+    header: () => <div className="text-right">Price</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue('amount'));
+      const price = parseFloat(row.getValue('price'));
+      const formatted_price = price.toFixed(2);
 
-      // Format the amount as a dollar amount
-      const formatted = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD'
-      }).format(amount);
-
-      return <div className="text-right font-medium">{formatted}</div>;
+      return <div className="text-right font-medium">{`$${formatted_price}`}</div>;
     }
   },
   {
-    id: 'actions',
-    enableHiding: false,
+    accessorKey: 'rating',
+    header: () => <div className="text-right">Rating</div>,
     cell: ({ row }) => {
-      const payment = row.original;
-
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+      const rating = parseFloat(row.getValue('rating'));
+      const numVote = row.original.num_votes as number;
+      const formatted_rating = rating.toFixed(1);
+      return <div className="text-right font-medium">{`${formatted_rating} (${numVote} votes)`}</div>;
     }
-  }
+  },
 ];
 
 export function DataTable() {
@@ -200,8 +397,8 @@ export function DataTable() {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection
-    }
+      rowSelection,
+    },
   });
 
   return (
@@ -211,7 +408,7 @@ export function DataTable() {
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Button variant="outline" className="ml-auto">
-                Columns <ChevronDown className="ml-2 h-4 w-4" />
+                Filter <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -235,10 +432,10 @@ export function DataTable() {
             </DropdownMenuContent>
           </DropdownMenu>
           <Input
-            placeholder="search..."
-            value={(table.getColumn('email')?.getFilterValue() as string) ?? ''}
+            placeholder="Search..."
+            value={(table.getColumn('Product')?.getFilterValue() as string) ?? ''}
             onChange={(event) =>
-              table.getColumn('email')?.setFilterValue(event.target.value)
+              table.getColumn('Product')?.setFilterValue(event.target.value)
             }
             className="w-96"
           />
@@ -332,26 +529,27 @@ export function DataTable() {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{' '}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {table.getFilteredRowModel().rows.length} Results
         </div>
         <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
+          <Pagination>
+          <Button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
             Previous
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
+          {table.getPageOptions().map((option, i) => (
+            <h1 key={i}>
+              <PaginationLink
+                onClick={() => table.setPageIndex(option)}
+                aria-disabled={option === table.getState().pagination.pageIndex}
+              >
+                {option + 1}
+              </PaginationLink>
+            </h1>
+          ))}
+          <Button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
             Next
           </Button>
+          </Pagination>
         </div>
       </div>
     </div>

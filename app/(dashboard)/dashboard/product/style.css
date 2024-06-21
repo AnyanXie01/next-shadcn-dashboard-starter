@@ -1,3 +1,31 @@
 .SelectTrigger[data-placeholder] {
   color: rgba(0, 0, 0, 0.5);
 }
+
+
+.product-name {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.product-category {
+  color: #777;
+  text-transform: capitalize;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.image-align {
+  display: flex;
+  align-items: center;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 8px; /* Add this line to make the image corners rounded */
+}
