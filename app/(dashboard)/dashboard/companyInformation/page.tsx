@@ -67,7 +67,7 @@ const GeneralInformation = () => {
                   Brand Description
                 </label>
                 <Textarea
-                  className="input-color w-full"
+                  className="input-color h-24 w-full"
                   placeholder="Brand description"
                 />
               </div>
