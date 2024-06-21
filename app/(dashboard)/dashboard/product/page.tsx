@@ -28,7 +28,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 const page = () => {
   return (
     <ScrollArea className="h-full">
-      {' '}
       <div className="px-4">
         <div className="flex h-14 items-center justify-between">
           <div className="text-3xl font-bold">Product</div>
