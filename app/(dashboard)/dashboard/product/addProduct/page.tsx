@@ -11,30 +11,32 @@ import {
   SelectValue
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Toggle } from '@/components/ui/toggle';
-import { Checkbox } from '@/components/ui/checkbox';
-import Link from 'next/link';
-
+import { Switch } from '@/components/ui/switch';
+import CheckBoxCustome from './CheckBoxCustome';
+import { Separator } from '@/components/ui/separator';
+import './style.css';
+import TagButton from './TagButton';
 const AddProduct = () => {
   return (
-    <div>
-      <div className="mb-8 flex items-center justify-between">
-        <button className="text-sm text-gray-500">&lt; Back</button>
-        <div className="flex space-x-4">
+    <div className="pt-6">
+      <button className="px-4 pb-4 text-sm text-gray-500">&lt; Back</button>
+      <div className="flex h-14 items-center justify-between px-4">
+        <h1 className="text-3xl font-bold">Add Product</h1>
+        <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
           <Button>Save</Button>
         </div>
       </div>
-      <h1 className="mb-8 text-2xl font-bold">Add Product</h1>
+
       <div className="container mx-auto p-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <div className="mb-10">
-              <div className="mb-6 flex items-center justify-between">
+              <div className="mb-6 flex items-center gap-x-10">
                 <h2 className="text-lg font-semibold">Information</h2>
                 <div className="flex items-center space-x-2">
+                  <Switch className=" data-[state=checked]:bg-blue-400 data-[state=unchecked]:bg-blue-100" />
                   <span>promoted</span>
-                  <Toggle />
                 </div>
               </div>
 
@@ -62,18 +64,26 @@ const AddProduct = () => {
                 />
               </div>
 
-              <div className="mb-10">
+              <Separator className="my-4" />
+              <div className="mb-10 pt-2">
                 <h3 className="mb-4 text-lg font-semibold">Images</h3>
-                <div className="border-2 border-dashed border-gray-300 p-6 text-center">
-                  <Button variant="outline" className="mb-2">
-                    Add File
-                  </Button>
-                  <p className="text-sm text-gray-600">
-                    Or drag and drop files
-                  </p>
+                <div className="flex h-48 flex-col items-center justify-center border-2 border-dashed border-gray-300 p-4 text-center">
+                  <div className="">
+                    <Input
+                      className="mb-2 ml-10 w-60 text-blue-500"
+                      id="file"
+                      type="file"
+                    />
+                    <p className="text-sm text-gray-600">
+                      Or drag and drop files
+                    </p>
+                  </div>
                 </div>
               </div>
 
+              <Separator className="my-4" />
+
+              <h3 className="mb-4 pt-2 text-lg font-semibold">Price</h3>
               <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium">
@@ -89,6 +99,8 @@ const AddProduct = () => {
                 </div>
               </div>
 
+              <Separator className="my-4" />
+              <h3 className="mb-4 pt-2 text-lg font-semibold">Shipping</h3>
               <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium">
@@ -101,7 +113,7 @@ const AddProduct = () => {
                     How many days needed to deliver
                   </label>
                   <Select>
-                    <SelectTrigger className="w-full">
+                    <SelectTrigger className="SelectTrigger w-full">
                       <SelectValue placeholder="3-5 days" />
                     </SelectTrigger>
                     <SelectContent>
@@ -117,13 +129,13 @@ const AddProduct = () => {
           <div className="lg:col-span-1">
             <div className="mb-10">
               <h2 className="mb-4 text-lg font-semibold">Categories</h2>
-              <div className="flex flex-col space-y-3">
-                <Checkbox>Women</Checkbox>
-                <Checkbox>Men</Checkbox>
-                <Checkbox>T-Shirt</Checkbox>
-                <Checkbox>Hoodie</Checkbox>
-                <Checkbox>Dress</Checkbox>
-                <button className="mt-2 text-sm text-blue-500">
+              <div className="flex flex-col space-y-5">
+                <CheckBoxCustome>Women</CheckBoxCustome>
+                <CheckBoxCustome>Men</CheckBoxCustome>
+                <CheckBoxCustome>T-Shirt</CheckBoxCustome>
+                <CheckBoxCustome>Hoodie</CheckBoxCustome>
+                <CheckBoxCustome>Dress</CheckBoxCustome>
+                <button className="mt-2 pr-52 text-sm text-blue-500">
                   Create New
                 </button>
               </div>
@@ -132,12 +144,15 @@ const AddProduct = () => {
             <div className="mb-10">
               <h2 className="mb-4 text-lg font-semibold">Tags</h2>
               <div className="mb-4">
+                <label className="mb-2 block text-sm font-medium">
+                  Add Tags
+                </label>
                 <Input className="w-full" placeholder="Enter tag name" />
               </div>
               <div className="flex flex-wrap gap-3">
-                <p>T-Shirt</p>
-                <p>Men Clothes</p>
-                <p>Summer Collection</p>
+                <TagButton>T-Shirt </TagButton>
+                <TagButton>Men Clothes</TagButton>
+                <TagButton>Summer Collection</TagButton>
               </div>
             </div>
 
@@ -145,13 +160,13 @@ const AddProduct = () => {
               <h2 className="mb-4 text-lg font-semibold">SEO Settings</h2>
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">Title</label>
-                <Input className="w-full" placeholder="Title" />
+                <Input className="w-full" />
               </div>
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
                   Description
                 </label>
-                <Textarea className="w-full" placeholder="Description" />
+                <Textarea className="h-28 w-full" />
               </div>
             </div>
           </div>
