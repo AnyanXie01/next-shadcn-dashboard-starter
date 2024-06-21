@@ -77,8 +77,12 @@ const GeneralInformation = () => {
               <div className="mb-6">
                 <h3 className="mb-2 text-lg font-semibold">Style</h3>
                 <div className="flex h-48 flex-col items-center justify-center border-2 border-dashed border-gray-300 p-4 text-center">
-                  <div>
-                    <Input className="mb-2 " id="file" type="file" />
+                  <div className="">
+                    <Input
+                      className="mb-2 ml-10 w-60 text-blue-500"
+                      id="file"
+                      type="file"
+                    />
                     <p className="text-sm text-gray-600">
                       Or drag and drop files
                     </p>
