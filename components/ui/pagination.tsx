@@ -50,6 +50,10 @@ const PaginationLink = ({
   ...props
 }: PaginationLinkProps) => (
   <a
+    style={{
+      backgroundColor: isActive ? '#ecf2ff' : 'transparent',
+      color: isActive ? '#007bff' : '0000',
+    }}
     aria-current={isActive ? "page" : undefined}
     className={cn(
       buttonVariants({

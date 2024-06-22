@@ -531,26 +531,27 @@ export function DataTable() {
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredRowModel().rows.length} Results
         </div>
-        <div className="space-x-2">
-          <Pagination>
-          <Button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-            Previous
-          </Button>
-          {table.getPageOptions().map((option, i) => (
-            <h1 key={i}>
-              <PaginationLink
-                onClick={() => table.setPageIndex(option)}
-                aria-disabled={option === table.getState().pagination.pageIndex}
-              >
-                {option + 1}
-              </PaginationLink>
-            </h1>
-          ))}
-          <Button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-            Next
-          </Button>
-          </Pagination>
-        </div>
+      <div className="space-x-2">
+        <Pagination>
+        <Button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+          Previous
+        </Button>
+        {table.getPageOptions().map((option, i) => (
+          <h1 key={i}>
+            <PaginationLink
+              onClick={() => table.setPageIndex(option)}
+              aria-disabled={option === table.getState().pagination.pageIndex}
+              isActive={option === table.getState().pagination.pageIndex}
+            >
+              {option + 1}
+            </PaginationLink>
+          </h1>
+        ))}
+        <Button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+          Next
+        </Button>
+        </Pagination>
+      </div>
       </div>
     </div>
   );
