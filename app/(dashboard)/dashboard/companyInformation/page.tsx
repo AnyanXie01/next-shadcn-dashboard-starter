@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
-
+import ApiButton from './ApiButton';
 const GeneralInformation = () => {
   return (
     <div>
@@ -21,7 +21,7 @@ const GeneralInformation = () => {
         <h1 className="text-3xl font-bold">General Information</h1>
         <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
-          <Button>Save</Button>
+          <ApiButton></ApiButton>
         </div>
       </div>
 
