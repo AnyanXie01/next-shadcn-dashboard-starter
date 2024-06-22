@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import './style.css';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -14,9 +16,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import CheckBoxCustome from './CheckBoxCustome';
 import { Separator } from '@/components/ui/separator';
-import './style.css';
+import ProductSaveButton from '@/app/(dashboard)/dashboard/product/addProduct/ProductSaveButton';
 import TagButton from './TagButton';
 const AddProduct = () => {
+  const [productName, setProductName] = useState('');
+  const [productLink, setProductLink] = useState('');
   return (
     <div className="pt-6">
       <button className="px-4 pb-4 text-sm text-gray-500">&lt; Back</button>
@@ -24,7 +28,10 @@ const AddProduct = () => {
         <h1 className="text-3xl font-bold">Add Product</h1>
         <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
-          <Button>Save</Button>
+          <ProductSaveButton
+            productName={productName}
+            productLink={productLink}
+          ></ProductSaveButton>
         </div>
       </div>
 
@@ -44,14 +51,26 @@ const AddProduct = () => {
                 <label className="mb-2 block text-sm font-medium">
                   Product Name
                 </label>
-                <Input className="w-full" placeholder="Summer T-Shirt" />
+                <Input
+                  className="w-full"
+                  placeholder="Summer T-Shirt"
+                  onChange={(event) => {
+                    setProductName(event.target.value);
+                  }}
+                />
               </div>
 
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
                   Product Link
                 </label>
-                <Input className="w-full" placeholder="http://" />
+                <Input
+                  className="w-full"
+                  placeholder="http://"
+                  onChange={(event) => {
+                    setProductLink(event.target.value);
+                  }}
+                />
               </div>
 
               <div className="mb-6">

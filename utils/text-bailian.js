@@ -20,7 +20,6 @@ export async function fetchData() {
     `https://dashscope.aliyuncs.com/api/v1/apps/${APP_ID_TEST}/completion`,
     {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         Authorization: `Bearer ${API_KEY}`,
         'Content-Type': 'application/json'

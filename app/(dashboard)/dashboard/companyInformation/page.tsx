@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import './style.css';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,15 +14,25 @@ import {
 } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
-import ApiButton from './ApiButton';
+import CompanySaveButton from '@/app/(dashboard)/dashboard/companyInformation/CompanySaveButton';
 const GeneralInformation = () => {
+  // const companyName = 'keysme';
+  // const companyWebsite = 'https\\"://eysme.tmall.com/';
+  // const productName = '机械键盘';
+  // const productImage
+  const [companyName, setCompanyName] = useState('');
+  const [companyWebsite, setCompanyWebsite] = useState('');
+  // const [productName, setProductName] = useState('');
   return (
     <div>
       <div className="flex h-14 items-center justify-between px-8">
         <h1 className="text-3xl font-bold">General Information</h1>
         <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
-          <ApiButton></ApiButton>
+          <CompanySaveButton
+            companyName={companyName}
+            companyWebsite={companyWebsite}
+          ></CompanySaveButton>
         </div>
       </div>
 
@@ -38,6 +49,9 @@ const GeneralInformation = () => {
                 <Input
                   className="input-color w-full"
                   placeholder="Fei qi chu hai"
+                  onChange={(event) => {
+                    setCompanyName(event.target.value);
+                  }}
                 />
               </div>
 
@@ -45,7 +59,13 @@ const GeneralInformation = () => {
                 <label className="mb-1 block text-sm font-medium text-gray-500">
                   Official website
                 </label>
-                <Input className="input-color w-full" placeholder="http://" />
+                <Input
+                  className="input-color w-full"
+                  placeholder="http://"
+                  onChange={(event) => {
+                    setCompanyWebsite(event.target.value);
+                  }}
+                />
               </div>
 
               <div className="mb-4">
