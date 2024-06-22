@@ -4,75 +4,64 @@ import { type z } from "zod";
 
 export const companyTable = pgTable("company", {
   companyName: text("companyName").primaryKey(),
-  headLine: text("headLine").notNull(),
-  subHeadLine: text("subHeadLine").notNull(),
-  heroImage: text("heroImage").notNull(),
-  headLineStyle: text("headLineFontSize").notNull(),
-  subHeadLineStyle: text("subHeadLineFontSize").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  address: text("address").notNull(),
-  facebook: text("facebook").notNull(),
-  instagram: text("instagram").notNull(),
-  youtube: text("youtube").notNull(),
-  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  officialWebsite: text("officialWebsite").notNull(),
 });
 
-export const productTable = pgTable("product", {
-  id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  name: text("name").notNull(),
-  description: text("description").notNull(),
-  price: text("price").notNull(),
-  image: text("image").notNull(),
-}, (table) => {
-  return {
-    productCompanyNameIndex: index("product_company_name_index").on(table.companyName),
-  }
-});
+// export const productTable = pgTable("product", {
+//   id: serial("id").primaryKey(),
+//   companyName: text("companyName").notNull(),
+//   name: text("name").notNull(),
+//   description: text("description").notNull(),
+//   price: text("price").notNull(),
+//   image: text("image").notNull(),
+// }, (table) => {
+//   return {
+//     productCompanyNameIndex: index("product_company_name_index").on(table.companyName),
+//   }
+// });
 
-export const categoryTable = pgTable("category", {
-  id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  name: text("name").notNull(),
-  description: text("description").notNull(),
-  image: text("image").notNull(),
-}, (table) => {
-  return {
-    categoryCompanyNameIndex: index("category_company_name_index").on(table.companyName),
-  }
-});
+// export const categoryTable = pgTable("category", {
+//   id: serial("id").primaryKey(),
+//   companyName: text("companyName").notNull(),
+//   name: text("name").notNull(),
+//   description: text("description").notNull(),
+//   image: text("image").notNull(),
+// }, (table) => {
+//   return {
+//     categoryCompanyNameIndex: index("category_company_name_index").on(table.companyName),
+//   }
+// });
 
-export const reviewTable = pgTable("review", {
-  id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  name: text("name").notNull(),
-  review: text("review").notNull(),
-}, (table) => {
-  return {
-    reviewCompanyNameIndex: index("review_company_name_index").on(table.companyName),
-  }
-});
+// export const reviewTable = pgTable("review", {
+//   id: serial("id").primaryKey(),
+//   companyName: text("companyName").notNull(),
+//   name: text("name").notNull(),
+//   review: text("review").notNull(),
+// }, (table) => {
+//   return {
+//     reviewCompanyNameIndex: index("review_company_name_index").on(table.companyName),
+//   }
+// });
 
-export const faqTable = pgTable("faq", {
-  id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  question: text("question").notNull(),
-  answer: text("answer").notNull(),
-}, (table) => {
-  return {
-    fagCompanyNameIndex: index("faq_company_name_index").on(table.companyName),
-  }
-});
+// export const faqTable = pgTable("faq", {
+//   id: serial("id").primaryKey(),
+//   companyName: text("companyName").notNull(),
+//   question: text("question").notNull(),
+//   answer: text("answer").notNull(),
+// }, (table) => {
+//   return {
+//     fagCompanyNameIndex: index("faq_company_name_index").on(table.companyName),
+//   }
+// });
 
-export const lastViewTable = pgTable("lastView", {
-  id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull()
-}, (table) => {
-  return {
-    lastViewCompanyNameIndex: index("company_name_index").on(table.companyName),
-  }
-})
+// export const lastViewTable = pgTable("lastView", {
+//   id: serial("id").primaryKey(),
+//   companyName: text("companyName").notNull()
+// }, (table) => {
+//   return {
+//     lastViewCompanyNameIndex: index("company_name_index").on(table.companyName),
+//   }
+// })
 
 // Schema for inserting a company - can be used to validate API requests
 export const insertCompanySchema = createInsertSchema(companyTable);

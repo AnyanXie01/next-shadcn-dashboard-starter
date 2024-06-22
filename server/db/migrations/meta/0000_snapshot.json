@@ -1,0 +1,37 @@
+{
+  "id": "dccc1a14-074c-4590-81ab-43def1d850a4",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.company": {
+      "name": "company",
+      "schema": "",
+      "columns": {
+        "companyName": {
+          "name": "companyName",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "officialWebsite": {
+          "name": "officialWebsite",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
