@@ -1,6 +1,7 @@
 import Header from '@/components/layout/header';
 import type { Metadata } from 'next';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { TRPCReactProvider } from '~/trpc/react';
 
 export const metadata: Metadata = {
   title: 'Next Shadcn Dashboard Starter',
@@ -18,7 +19,7 @@ export default function DashboardLayout({
       <div className="flex h-screen overflow-hidden">
         {/* <Sidebar /> */}
         <main className="flex-1 overflow-hidden pt-16">
-          <ScrollArea className="h-full">{children}</ScrollArea>
+          <TRPCReactProvider><ScrollArea className="h-full">{children}</ScrollArea></TRPCReactProvider>
         </main>
       </div>
     </>

@@ -1,7 +1,9 @@
 'use client';
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { test, fetchData } from '@/utils/text-bailian';
+import { api } from '~/trpc/react';
+import { toast } from 'sonner';
+// import { test, fetchData } from '@/utils/text-bailian';
 
 interface CompanySaveButtonProps {
   companyName: string;
@@ -11,11 +13,13 @@ const CompanySaveButton = ({
   companyName,
   companyWebsite
 }: CompanySaveButtonProps) => {
+  const {mutate : saveCompany} = api.post.saveCompanyInfo.useMutation();
   return (
     <Button
       onClick={async () => {
-        console.log(companyName);
-        console.log(companyWebsite);
+        console.log("clicked save button");
+        saveCompany({companyName, companyWebsite});
+        toast.info("company created.");
       }}
     >
       Save
