@@ -1,7 +1,7 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { z } from "zod";
 import { db } from "~/server/db";
-import { companyTable } from "~/server/db/schema";
+import { companyTable, productTable } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 
 export const postRouter = createTRPCRouter({
@@ -15,6 +15,31 @@ export const postRouter = createTRPCRouter({
       })
       console.log(res);
     }),
+    saveProductInfo: publicProcedure.
+    input(z.object({
+      companyName: z.string(), 
+      productName: z.string(),
+      productCategory: z.string(),
+      productPrice: z.number(),
+      productImage: z.string(),
+      productInventory: z.number(),
+      productReviews: z.number(),
+      productRatings: z.number()
+    }))
+    .mutation( async ({ input }) => {
+      console.log("save product info...");
+      const res = await db.insert(productTable).values({
+        companyName: input.companyName,
+        productName: input.productName,
+        productCategory: input.productCategory,
+        productPrice: input.productPrice,
+        productImage: input.productImage,
+        productInventory: input.productInventory,
+        productReviews: input.productReviews,
+        productRatings: input.productRatings,
+      })
+      console.log(res);
+    }),
   getCompanyInfo: publicProcedure
     .input(z.object({companyName: z.string()}))
     .query (async({ input }) => {
@@ -22,7 +47,6 @@ export const postRouter = createTRPCRouter({
         where: eq(companyTable.companyName, input.companyName),
       })
     }
-
     )
 })
 

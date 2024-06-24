@@ -2,22 +2,25 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { api } from '~/trpc/react';
+import { toast } from 'sonner';
 
 interface ProductSaveProps {
   productName: string;
-  productLink: string;
+  productImage: string;
 }
 const ProductSaveButton = ({
   productName,
-  productLink,
 }: ProductSaveProps) => {
-  // const {mutate : saveProduct} = api.post.saveCompanyInfo.useMutation();
+  const {mutate : saveProduct} = api.post.saveProductInfo.useMutation();
   return (
     <Button
-      // onClick={async () => {
-      //   console.log("clicked save button");
-      //   saveProduct({productName, productLink});
-      // }}
+      onClick={async () => {
+        console.log("clicked save button");
+        // saveProduct({
+        //   productName,
+        //   productImage
+        // })
+      }}
     >
       Save
     </Button>

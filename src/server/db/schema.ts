@@ -2,7 +2,8 @@
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
 import { sql } from "drizzle-orm";
-import { index, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
+import { index, pgTable, serial, text, timestamp, real, integer } from "drizzle-orm/pg-core";
+import { number } from "zod";
 
 
 /**
@@ -14,4 +15,20 @@ import { index, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 export const companyTable = pgTable("company", {
   companyName: text("companyName").primaryKey(),
   companyWebsite: text("companyWebsite").notNull(),
+});
+
+export const productTable = pgTable("product", {
+  id: serial("id").primaryKey(),
+  companyName: text("companyName").notNull(),
+  productName: text("name").notNull(),
+  productCategory: text("category").notNull(),
+  productPrice: real("price").default(0.0),
+  productImage: text("image").notNull(),
+  productInventory: integer("inventory").notNull(),
+  productReviews: integer("reviews").notNull(),
+  productRatings: real("productRatings").default(0.0)
+}, (table) => {
+  return {
+    productCompanyNameIndex: index("product_company_name_index").on(table.companyName),
+  }
 });
