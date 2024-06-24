@@ -11,7 +11,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable
+  useReactTable,
 } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 
@@ -24,7 +24,7 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 
@@ -34,7 +34,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from '@/components/ui/table';
 
 import {
@@ -45,32 +45,18 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
+} from '@/components/ui/pagination';
 
-const data: Payment[] = [
-  {
-    id: 1,
-    price: 49.9,
-    color: "Black",
-    rating: 5.0,
-    num_votes: 32,
-    inventory: 96,
-    product_name: "Men Grey Hoodie",
-    product_type: "Hoodies",
-    product_image: "https://picsum.photos/300/300"
-  },
-];
+import { api } from '~/trpc/react';
 
 type Payment = {
-  id: number;
-  price: number
-  color: string
-  rating: number
-  num_votes: number
-  inventory: number
-  product_name: string
-  product_type: string
-  product_image: string
+  productName: string;
+  productCategory: string;
+  productInventory: number; // Changed from string to number
+  productPrice: string;
+  productRatings: number | null;
+  productReviews: number | null;
+  productImage: string; // Added this field if it exists in your data
 };
 
 const columns: ColumnDef<Payment>[] = [
@@ -94,76 +80,71 @@ const columns: ColumnDef<Payment>[] = [
       />
     ),
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
   {
-    accessorKey: 'product_name',
+    accessorKey: 'productName',
     header: 'Product',
-    cell: ({ row }) => {
-      const imageLink = row.original.product_image
-      return (
+    cell: ({ row }) => (
       <div className="image-align">
-        <img src={imageLink} alt={row.getValue('product_name')} className="product-image" />
+        <img src={row.original.productImage} alt={row.getValue('productName')} className="product-image" />
         <div className="product-info">
-          <span className="product-name">{row.getValue('product_name')}</span>
-          <span className="product-category">{row.original.product_type}</span>
+          <span className="product-name">{row.getValue('productName')}</span>
+          <span className="product-category">{row.original.productCategory}</span>
         </div>
       </div>
-      )
-    }
+    ),
   },
   {
-    accessorKey: 'inventory',
+    accessorKey: 'productInventory',
     header: () => <div>Inventory</div>,
     cell: ({ row }) => {
-      const inventory = row.getValue('inventory') as number;
+      const inventory = row.getValue('productInventory') as number;
       return (
         <div className="capitalize">
           {inventory > 0 ? `${inventory} In Stock` : 'Out of stock'}
         </div>
-      )
-    }
+      );
+    },
   },
   {
-    accessorKey: 'color',
-    header: 'Color',
+    accessorKey: 'productCategory',
+    header: 'Category',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('color')}</div>
-    )
+      <div className="capitalize">{row.getValue('productCategory')}</div>
+    ),
   },
   {
-    accessorKey: 'price',
+    accessorKey: 'productPrice',
     header: () => <div className="text-right">Price</div>,
     cell: ({ row }) => {
-      const price = parseFloat(row.getValue('price'));
+      const price = parseFloat(row.getValue('productPrice'));
       const formatted_price = price.toFixed(2);
 
       return <div className="text-right font-medium">{`$${formatted_price}`}</div>;
-    }
+    },
   },
   {
-    accessorKey: 'rating',
+    accessorKey: 'productRatings',
     header: () => <div className="text-right">Rating</div>,
     cell: ({ row }) => {
-      const rating = parseFloat(row.getValue('rating'));
-      const numVote = row.original.num_votes as number;
+      const rating = parseFloat(row.getValue('productRatings'));
+      const reviews = row.getValue('productReviews') as number;
       const formatted_rating = rating.toFixed(1);
-      return <div className="text-right font-medium">{`${formatted_rating} (${numVote} votes)`}</div>;
-    }
+      return <div className="text-right font-medium">{`${formatted_rating} (${reviews} reviews)`}</div>;
+    },
   },
 ];
 
 export function DataTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
+  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: 'testCompany' });
   const table = useReactTable({
-    data,
+    data: data || [],    
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -180,6 +161,14 @@ export function DataTable() {
       rowSelection,
     },
   });
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error loading data</div>;
+  }
 
   return (
     <div className="w-full px-4">
@@ -213,9 +202,9 @@ export function DataTable() {
           </DropdownMenu>
           <Input
             placeholder="Search..."
-            value={(table.getColumn('Product')?.getFilterValue() as string) ?? ''}
+            value={(table.getColumn('productName')?.getFilterValue() as string) ?? ''}
             onChange={(event) =>
-              table.getColumn('Product')?.setFilterValue(event.target.value)
+              table.getColumn('productName')?.setFilterValue(event.target.value)
             }
             className="w-96"
           />
@@ -230,9 +219,9 @@ export function DataTable() {
               viewBox="0 0 24 24"
               fill="none"
               stroke="#142ef0"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M12 20h9" />
               <path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z" />
@@ -246,9 +235,9 @@ export function DataTable() {
               viewBox="0 0 24 24"
               fill="none"
               stroke="#142ef0"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <path d="M3 6h18" />
               <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
@@ -296,10 +285,7 @@ export function DataTable() {
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
@@ -311,27 +297,27 @@ export function DataTable() {
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredRowModel().rows.length} Results
         </div>
-      <div className="space-x-2">
-        <Pagination>
-        <Button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-          Previous
-        </Button>
-        {table.getPageOptions().map((option, i) => (
-          <h1 key={i}>
-            <PaginationLink
-              onClick={() => table.setPageIndex(option)}
-              aria-disabled={option === table.getState().pagination.pageIndex}
-              isActive={option === table.getState().pagination.pageIndex}
-            >
-              {option + 1}
-            </PaginationLink>
-          </h1>
-        ))}
-        <Button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-          Next
-        </Button>
-        </Pagination>
-      </div>
+        <div className="space-x-2">
+          <Pagination>
+            <Button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+              Previous
+            </Button>
+            {table.getPageOptions().map((option, i) => (
+              <h1 key={i}>
+                <PaginationLink
+                  onClick={() => table.setPageIndex(option)}
+                  aria-disabled={option === table.getState().pagination.pageIndex}
+                  isActive={option === table.getState().pagination.pageIndex}
+                >
+                  {option + 1}
+                </PaginationLink>
+              </h1>
+            ))}
+            <Button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+              Next
+            </Button>
+          </Pagination>
+        </div>
       </div>
     </div>
   );

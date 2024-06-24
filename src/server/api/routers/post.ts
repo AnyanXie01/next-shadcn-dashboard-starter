@@ -42,27 +42,22 @@ export const postRouter = createTRPCRouter({
       })
       console.log(res);
     }),
-  getCompanyInfo: publicProcedure
+  getProductInfo: publicProcedure
     .input(z.object({companyName: z.string()}))
     .query (async({ input }) => {
-      return await db.select({
+      const res = await db.select({
         productName: productTable.productName,
         productCategory: productTable.productCategory,
         productInventory: productTable.productInventory,
         productPrice: productTable.productPrice,
         productRatings: productTable.productRatings,
-        productReviews: productTable.productRatings
+        productReviews: productTable.productRatings,
+        productImage: productTable.productImage
       })
       .from(productTable)
-      .where(eq(productTable.productName, input.companyName))
-    }
-    ),
-  getProductInfo: publicProcedure
-    .input(z.object({companyName: z.string()}))
-    .query (async({ input }) => {
-      return await db.query.productTable.findFirst({
-        where: eq(productTable.companyName, input.companyName),
-      })
+      .where(eq(productTable.companyName, input.companyName))
+      console.log("Get Product Result: ", res)
+      return res
     }
     ),
 })
