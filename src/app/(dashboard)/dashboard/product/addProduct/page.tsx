@@ -18,9 +18,16 @@ import CheckBoxCustome from './CheckBoxCustome';
 import { Separator } from '@/components/ui/separator';
 import ProductSaveButton from '@/app/(dashboard)/dashboard/product/addProduct/ProductSaveButton';
 import TagButton from './TagButton';
+import { number } from 'zod';
 const AddProduct = () => {
   const [productName, setProductName] = useState('');
-  const [productLink, setProductLink] = useState('');
+  const [productDescription, setProductDescription] = useState('');
+  const [productPrice, setProductPrice] = useState('');
+  const[productImage, setProductImage] = useState('');
+  const[productCategory, setProductCategory] = useState("Cat Litter Box")
+  const[productReviews, setProductReviews] = useState(10);
+  const[productRatings, setProductRatings] = useState(4.8)
+  const[productInventory, setProductInventory] = useState(58);
   return (
     <div className="pt-6">
       <button className="px-4 pb-4 text-sm text-gray-500">&lt; Back</button>
@@ -29,8 +36,15 @@ const AddProduct = () => {
         <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
           <ProductSaveButton
+            companyName="testCompany"
             productName={productName}
-            productLink={productLink}
+            productCategory= {productCategory}
+            productPrice={productPrice}
+            productImage={productImage}
+            productInventory={productInventory}
+            productReviews={productReviews}
+            productDescription="This is a delicate cat litter box"
+            productRatings={productRatings}
           ></ProductSaveButton>
         </div>
       </div>
@@ -67,9 +81,7 @@ const AddProduct = () => {
                 <Input
                   className="w-full"
                   placeholder="http://"
-                  onChange={(event) => {
-                    setProductLink(event.target.value);
-                  }}
+
                 />
               </div>
 
@@ -92,6 +104,9 @@ const AddProduct = () => {
                       className="mb-2 ml-10 w-60 text-blue-500"
                       id="file"
                       type="file"
+                      onChange={(event) => {
+                        setProductImage(event.target.value);
+                      }}
                     />
                     <p className="text-sm text-gray-600">
                       Or drag and drop files
@@ -108,7 +123,13 @@ const AddProduct = () => {
                   <label className="mb-2 block text-sm font-medium">
                     Product Price
                   </label>
-                  <Input className="w-full" placeholder="Enter price" />
+                  <Input 
+                  className="w-full" 
+                  placeholder="Enter price"
+                  type='number'
+                  onChange={(event) => {
+                    setProductPrice(event.target.value);
+                  }} />
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium">
@@ -154,7 +175,8 @@ const AddProduct = () => {
                 <CheckBoxCustome>T-Shirt</CheckBoxCustome>
                 <CheckBoxCustome>Hoodie</CheckBoxCustome>
                 <CheckBoxCustome>Dress</CheckBoxCustome>
-                <button className="mt-2 pr-52 text-sm text-blue-500">
+                <button 
+                className="mt-2 pr-52 text-sm text-blue-500">
                   Create New
                 </button>
               </div>

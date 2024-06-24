@@ -20,10 +20,11 @@ export const companyTable = pgTable("company", {
 export const productTable = pgTable("product", {
   id: serial("id").primaryKey(),
   companyName: text("companyName").notNull(),
-  productName: text("name").notNull(),
-  productCategory: text("category").notNull(),
-  productPrice: real("price").default(0.0),
+  productName: text("productName").notNull(),
+  productDescription: text("productDescription").notNull(),
+  productPrice: text("price").notNull(),
   productImage: text("image").notNull(),
+  productCategory: text("category").notNull(),
   productInventory: integer("inventory").notNull(),
   productReviews: integer("reviews").notNull(),
   productRatings: real("productRatings").default(0.0)
