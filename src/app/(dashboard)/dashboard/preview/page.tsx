@@ -1,9 +1,20 @@
+// "use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import GenerateButton from "./GenerateButton";
-const Preview = () => {
+import { api } from "~/trpc/server";
+import HeroSection from "./HeroSection";
+import ProductionSection from "./ProductionSection";
+import CategoriesSection from "./CategoriesSection";
+import ReviewSection from "./ReviewSection";
+import FAQSection from "./FAQSection";
+import ContactSection from "./ContactSection";
+const Preview = async () => {
+  const data = await api.post.getCompanyInfo({ companyName: "11111" });
+  console.log("----------------------------------------------");
+  console.log(data);
   return (
     <div className="px-4">
       <div className="flex h-14 items-center justify-between">
@@ -22,12 +33,26 @@ const Preview = () => {
         </div>
       </div>
       <Separator className="mb-6 mt-6 w-full bg-slate-200" />
-      <div className="mb-6 grid grid-cols-1 gap-6">
-        <div className="h-80 w-full bg-gray-200"></div>
-        <div className="h-80 w-full bg-gray-200"></div>
-        <div className="h-80 w-full bg-gray-200"></div>
-        <div className="h-80 w-full bg-gray-200"></div>
-        <div className="h-80 w-full bg-gray-200"></div>
+      {/* <div className="h-80 w-full bg-gray-200"> */}
+      <div className="mb-6 grid grid-cols-1 gap-20">
+        <div className="w-full border-2 border-slate-600">
+          <HeroSection></HeroSection>
+        </div>
+        <div className="w-full border-2 border-slate-600">
+          <ProductionSection></ProductionSection>
+        </div>
+        <div className="w-full border-2 border-slate-600">
+          <CategoriesSection></CategoriesSection>
+        </div>
+        <div className="w-full border-2 border-slate-600">
+          <ReviewSection></ReviewSection>
+        </div>
+        <div className="w-full border-2 border-slate-600">
+          <FAQSection></FAQSection>
+        </div>
+        <div className="w-full border-2 border-slate-600">
+          <ContactSection></ContactSection>
+        </div>
       </div>
     </div>
   );
