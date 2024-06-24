@@ -22,6 +22,20 @@
       "when": 1719114210220,
       "tag": "0002_blue_eternals",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1719215431055,
+      "tag": "0003_wooden_spot",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1719216836636,
+      "tag": "0004_gorgeous_dracula",
+      "breakpoints": true
     }
   ]
 }
