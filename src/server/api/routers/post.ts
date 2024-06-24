@@ -51,12 +51,11 @@ export const postRouter = createTRPCRouter({
         productInventory: productTable.productInventory,
         productPrice: productTable.productPrice,
         productRatings: productTable.productRatings,
-        productReviews: productTable.productRatings,
+        productReviews: productTable.productReviews,
         productImage: productTable.productImage
       })
       .from(productTable)
       .where(eq(productTable.companyName, input.companyName))
-      console.log("Get Product Result: ", res)
       return res
     }
     ),
