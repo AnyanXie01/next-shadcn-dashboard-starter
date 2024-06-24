@@ -11,8 +11,10 @@ import CategoriesSection from "./CategoriesSection";
 import ReviewSection from "./ReviewSection";
 import FAQSection from "./FAQSection";
 import ContactSection from "./ContactSection";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 const Preview = async () => {
-  const data = await api.post.getCompanyInfo({ companyName: "11111" });
+  // const data = await api.post.getCompanyInfo({ companyName: "11111" });
+  const data = "data";
   console.log("----------------------------------------------");
   console.log(data);
   return (

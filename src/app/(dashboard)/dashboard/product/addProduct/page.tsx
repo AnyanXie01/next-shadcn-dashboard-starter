@@ -19,6 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import ProductSaveButton from "@/app/(dashboard)/dashboard/product/addProduct/ProductSaveButton";
 import TagButton from "./TagButton";
 import { number } from "zod";
+import Link from "next/link";
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
@@ -30,7 +31,10 @@ const AddProduct = () => {
   const [productInventory, setProductInventory] = useState(58);
   return (
     <div className="pt-6">
-      <button className="px-4 pb-4 text-sm text-gray-500">&lt; Back</button>
+      <Link href="/dashboard/product/">
+        <button className="px-4 pb-4 text-sm text-gray-500">&lt; Back</button>
+      </Link>
+
       <div className="flex h-14 items-center justify-between px-4">
         <h1 className="text-3xl font-bold">Add Product</h1>
         <div className="flex space-x-4 pr-20">

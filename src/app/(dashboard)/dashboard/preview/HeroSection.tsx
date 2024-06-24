@@ -84,13 +84,6 @@ const HeroSection = () => {
               Shop Now
             </a>
           </p>
-          {/* <div className="mt-8">
-          <img
-            src="https://via.placeholder.com/400x300"
-            alt="Hero"
-            className="mx-auto"
-          />
-        </div> */}{" "}
         </div>
       </section>
     </div>

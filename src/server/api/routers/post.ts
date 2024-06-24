@@ -5,29 +5,35 @@ import { companyTable, productTable } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 
 export const postRouter = createTRPCRouter({
-  saveCompanyInfo: publicProcedure.
-    input(z.object({companyName: z.string(), companyWebsite : z.string()}))
-    .mutation( async ({ input }) => {
-      console.log("save company info...", input.companyName, input.companyWebsite);
+  saveCompanyInfo: publicProcedure
+    .input(z.object({ companyName: z.string(), companyWebsite: z.string() }))
+    .mutation(async ({ input }) => {
+      console.log(
+        "save company info...",
+        input.companyName,
+        input.companyWebsite,
+      );
       const res = await db.insert(companyTable).values({
         companyName: input.companyName,
-        companyWebsite: input.companyWebsite
-      })
+        companyWebsite: input.companyWebsite,
+      });
       console.log(res);
     }),
-  saveProductInfo: publicProcedure.
-    input(z.object({
-      companyName: z.string(), 
-      productName: z.string(),
-      productCategory: z.string(),
-      productDescription: z.string(),
-      productPrice: z.string(),
-      productImage: z.string(),
-      productInventory: z.number(),
-      productReviews: z.number(),
-      productRatings: z.number()
-    }))
-    .mutation( async ({ input }) => {
+  saveProductInfo: publicProcedure
+    .input(
+      z.object({
+        companyName: z.string(),
+        productName: z.string(),
+        productCategory: z.string(),
+        productDescription: z.string(),
+        productPrice: z.string(),
+        productImage: z.string(),
+        productInventory: z.number(),
+        productReviews: z.number(),
+        productRatings: z.number(),
+      }),
+    )
+    .mutation(async ({ input }) => {
       console.log("save product info...");
       const res = await db.insert(productTable).values({
         companyName: input.companyName,
@@ -39,28 +45,34 @@ export const postRouter = createTRPCRouter({
         productInventory: input.productInventory,
         productReviews: input.productReviews,
         productRatings: input.productRatings,
-      })
+      });
       console.log(res);
     }),
   getProductInfo: publicProcedure
-    .input(z.object({companyName: z.string()}))
-    .query (async({ input }) => {
-      const res = await db.select({
-        productName: productTable.productName,
-        productCategory: productTable.productCategory,
-        productInventory: productTable.productInventory,
-        productPrice: productTable.productPrice,
-        productRatings: productTable.productRatings,
-        productReviews: productTable.productRatings,
-        productImage: productTable.productImage
-      })
-      .from(productTable)
-      .where(eq(productTable.companyName, input.companyName))
-      console.log("Get Product Result: ", res)
-      return res
-    }
-    ),
-})
+    .input(z.object({ companyName: z.string() }))
+    .query(async ({ input }) => {
+      const res = await db
+        .select({
+          productName: productTable.productName,
+          productCategory: productTable.productCategory,
+          productInventory: productTable.productInventory,
+          productPrice: productTable.productPrice,
+          productRatings: productTable.productRatings,
+          productReviews: productTable.productRatings,
+          productImage: productTable.productImage,
+        })
+        .from(productTable)
+        .where(eq(productTable.companyName, input.companyName));
+      console.log("Get Product Result: ", res);
+      return res;
+    }),
+  // callCoze: publicProcedure
+  //   .input(z.object({      companyName: z.string(),
+  //     companyWebsite: z.string(),
+  //     productName: z.string(),
+  //     productImage: z.string,
+  //     recordId: z.string()})
+});
 
 // import { posts } from "~/server/db/schema";
 
