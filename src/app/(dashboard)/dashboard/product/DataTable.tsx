@@ -87,7 +87,7 @@ const columns: ColumnDef<Payment>[] = [
     header: 'Product',
     cell: ({ row }) => (
       <div className="image-align">
-        <img src={row.original.productImage} alt={row.getValue('productName')} className="product-image" />
+        <img src={row.original.productImage} className="product-image" />
         <div className="product-info">
           <span className="product-name">{row.getValue('productName')}</span>
           <span className="product-category">{row.original.productCategory}</span>
