@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
-
+import GenerateButton from "./GenerateButton";
 const Preview = () => {
   return (
     <div className="px-4">
@@ -18,6 +18,7 @@ const Preview = () => {
           <Link href="/dashboard/product/addProduct">
             <Button className="ml-auto bg-black text-white">Publish</Button>
           </Link>
+          <GenerateButton></GenerateButton>
         </div>
       </div>
       <Separator className="mb-6 mt-6 w-full bg-slate-200" />
