@@ -1,12 +1,12 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import React from "react";
+import { Button } from "@/components/ui/button";
 
 interface ChildrenPros {
   children: string;
 }
 const TagButton = ({ children }: ChildrenPros) => {
   return (
-    <Button variant="secondary">
+    <Button className="bg-slate-200">
       {children}
       <svg
         className="pl-2"

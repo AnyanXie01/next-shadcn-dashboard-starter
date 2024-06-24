@@ -1,5 +1,5 @@
-import React from 'react';
-import './style.css';
+import React from "react";
+import "./style.css";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -7,11 +7,11 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle
-} from '@/components/ui/navigation-menu';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { Input } from '@/components/ui/input';
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -19,12 +19,12 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
-  SelectValue
-} from '@/components/ui/select';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
-import ImportDropDown from './ImportDropDown';
-import DataTable from './DataTable';
-import { ScrollArea } from '@/components/ui/scroll-area';
+  SelectValue,
+} from "@/components/ui/select";
+import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import ImportDropDown from "./ImportDropDown";
+import DataTable from "./DataTable";
+import { ScrollArea } from "@/components/ui/scroll-area";
 const page = () => {
   return (
     <ScrollArea className="h-full">
@@ -40,7 +40,9 @@ const page = () => {
               Export
             </Button>
             <Link href="/dashboard/product/addProduct">
-              <Button className="ml-auto">+ Add Products</Button>
+              <Button className="ml-auto bg-black text-white">
+                + Add Products
+              </Button>
             </Link>
           </div>
         </div>

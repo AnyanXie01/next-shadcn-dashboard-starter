@@ -1,8 +1,8 @@
-'use client';
-import React, { useState } from 'react';
-import './style.css';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+"use client";
+import React, { useState } from "react";
+import "./style.css";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -10,17 +10,17 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
-  SelectValue
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { Switch } from '@/components/ui/switch';
-import CheckBoxCustome from './CheckBoxCustome';
-import { Separator } from '@/components/ui/separator';
-import ProductSaveButton from '@/app/(dashboard)/dashboard/product/addProduct/ProductSaveButton';
-import TagButton from './TagButton';
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Switch } from "@/components/ui/switch";
+import CheckBoxCustome from "./CheckBoxCustome";
+import { Separator } from "@/components/ui/separator";
+import ProductSaveButton from "@/app/(dashboard)/dashboard/product/addProduct/ProductSaveButton";
+import TagButton from "./TagButton";
 const AddProduct = () => {
-  const [productName, setProductName] = useState('');
-  const [productLink, setProductLink] = useState('');
+  const [productName, setProductName] = useState("");
+  const [productLink, setProductLink] = useState("");
   return (
     <div className="pt-6">
       <button className="px-4 pb-4 text-sm text-gray-500">&lt; Back</button>

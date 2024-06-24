@@ -1,8 +1,8 @@
-'use client';
-import React, { useState } from 'react';
-import './style.css';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+"use client";
+import React, { useState } from "react";
+import "./style.css";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -10,18 +10,18 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
-  SelectValue
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { Separator } from '@/components/ui/separator';
-import CompanySaveButton from '@/app/(dashboard)/dashboard/companyInformation/CompanySaveButton';
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
+import CompanySaveButton from "@/app/(dashboard)/dashboard/companyInformation/CompanySaveButton";
 const GeneralInformation = () => {
   // const companyName = 'keysme';
   // const companyWebsite = 'https\\"://eysme.tmall.com/';
   // const productName = '机械键盘';
   // const productImage
-  const [companyName, setCompanyName] = useState('');
-  const [companyWebsite, setCompanyWebsite] = useState('');
+  const [companyName, setCompanyName] = useState("");
+  const [companyWebsite, setCompanyWebsite] = useState("");
   // const [productName, setProductName] = useState('');
   return (
     <div>
@@ -92,7 +92,7 @@ const GeneralInformation = () => {
                 />
               </div>
 
-              <Separator className="w-full" />
+              <Separator className="w-full bg-slate-200" />
 
               <div className="mb-6">
                 <h3 className="mb-2 text-lg font-semibold">Style</h3>
@@ -110,7 +110,7 @@ const GeneralInformation = () => {
                 </div>
               </div>
 
-              <Separator className="w-full" />
+              <Separator className="w-full bg-slate-200" />
 
               <div>
                 <h3 className="mb-2 text-lg font-semibold">Competitors</h3>

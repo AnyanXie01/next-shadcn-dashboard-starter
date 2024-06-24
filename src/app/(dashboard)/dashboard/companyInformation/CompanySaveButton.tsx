@@ -1,8 +1,8 @@
-'use client';
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { api } from '~/trpc/react';
-import { toast } from 'sonner';
+"use client";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { api } from "~/trpc/react";
+import { toast } from "sonner";
 // import { test, fetchData } from '@/utils/text-bailian';
 
 interface CompanySaveButtonProps {
@@ -11,14 +11,15 @@ interface CompanySaveButtonProps {
 }
 const CompanySaveButton = ({
   companyName,
-  companyWebsite
+  companyWebsite,
 }: CompanySaveButtonProps) => {
-  const {mutate : saveCompany} = api.post.saveCompanyInfo.useMutation();
+  const { mutate: saveCompany } = api.post.saveCompanyInfo.useMutation();
   return (
     <Button
+      className="bg-black text-white"
       onClick={async () => {
         console.log("clicked save button");
-        saveCompany({companyName, companyWebsite});
+        saveCompany({ companyName, companyWebsite });
         toast.info("company created.");
       }}
     >
