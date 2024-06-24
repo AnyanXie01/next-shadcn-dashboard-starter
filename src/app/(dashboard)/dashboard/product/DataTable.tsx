@@ -101,18 +101,18 @@ const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => {
       const inventory = row.getValue('productInventory') as number;
       return (
-        <div className="capitalize">
-          {inventory > 0 ? `${inventory} In Stock` : 'Out of stock'}
+        <div>
+          {inventory > 0 ? `${inventory} in Stock` : 'Out of stock'}
         </div>
       );
     },
   },
   {
-    accessorKey: 'productCategory',
-    header: 'Category',
+    accessorKey: 'color',
+    header: 'Color',
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue('productCategory')}</div>
-    ),
+      <div className="capitalize">Black</div>
+    )
   },
   {
     accessorKey: 'productPrice',
@@ -129,7 +129,7 @@ const columns: ColumnDef<Payment>[] = [
     header: () => <div className="text-right">Rating</div>,
     cell: ({ row }) => {
       const rating = parseFloat(row.getValue('productRatings'));
-      const reviews = row.getValue('productReviews') as number;
+      const reviews = row.original.productReviews as number;
       const formatted_rating = rating.toFixed(1);
       return <div className="text-right font-medium">{`${formatted_rating} (${reviews} reviews)`}</div>;
     },
