@@ -15,7 +15,7 @@ export const postRouter = createTRPCRouter({
       })
       console.log(res);
     }),
-    saveProductInfo: publicProcedure.
+  saveProductInfo: publicProcedure.
     input(z.object({
       companyName: z.string(), 
       productName: z.string(),
@@ -45,11 +45,26 @@ export const postRouter = createTRPCRouter({
   getCompanyInfo: publicProcedure
     .input(z.object({companyName: z.string()}))
     .query (async({ input }) => {
-      return await db.query.companyTable.findFirst({
-        where: eq(companyTable.companyName, input.companyName),
+      return await db.select({
+        productName: productTable.productName,
+        productCategory: productTable.productCategory,
+        productInventory: productTable.productInventory,
+        productPrice: productTable.productPrice,
+        productRatings: productTable.productRatings,
+        productReviews: productTable.productRatings
+      })
+      .from(productTable)
+      .where(eq(productTable.productName, input.companyName))
+    }
+    ),
+  getProductInfo: publicProcedure
+    .input(z.object({companyName: z.string()}))
+    .query (async({ input }) => {
+      return await db.query.productTable.findFirst({
+        where: eq(productTable.companyName, input.companyName),
       })
     }
-    )
+    ),
 })
 
 // import { posts } from "~/server/db/schema";
