@@ -141,8 +141,8 @@ export function DataTable() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
-
-  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: 'testCompany' });
+  const { data: lastReviewData, isLoading: lastReviewLoading, isError: lastReviewError } = api.post.getLastView.useQuery();
+  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: lastReviewData?.companyName || "Error"});
   const table = useReactTable({
     data: data || [],    
     columns,

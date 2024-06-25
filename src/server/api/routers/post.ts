@@ -118,7 +118,7 @@ export const postRouter = createTRPCRouter({
       })
       .from(lastViewTable)
       .where(eq(lastViewTable.id, 0));
-    return res;
+    return res[0];
   }),
   saveLastView: publicProcedure
     .input(
