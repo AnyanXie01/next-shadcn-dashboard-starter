@@ -2,6 +2,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { api } from "~/trpc/react";
+import { useToast } from "~/components/ui/use-toast";
+
 import {
   Alert,
   AlertDescription,
@@ -31,6 +33,7 @@ const ProductSaveButton = ({
   productRatings,
 }: ProductSaveProps) => {
   const { mutate: saveProduct } = api.post.saveProductInfo.useMutation();
+  const { toast } = useToast()
   return (
     <Button
       className="bg-black text-white"
@@ -46,7 +49,9 @@ const ProductSaveButton = ({
           productReviews,
           productRatings,
         });
-        alert("Successfully Add Product")
+        toast({
+          description: "Your product info has been saved."
+        })
       }
     }
     >

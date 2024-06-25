@@ -7,16 +7,35 @@ import { Service } from "./service";
 
 export const postRouter = createTRPCRouter({
   saveCompanyInfo: publicProcedure
-    .input(z.object({ companyName: z.string(), companyWebsite: z.string() }))
+    .input(z.object(
+      { 
+        companyName: z.string(), 
+        companyWebsite: z.string(),
+        productName: z.string()
+      }
+    ))
     .mutation(async ({ input }) => {
       console.log(
         "save company info...",
         input.companyName,
         input.companyWebsite,
+        input.productName
       );
       const res = await db.insert(companyTable).values({
         companyName: input.companyName,
         companyWebsite: input.companyWebsite,
+        brandName: input.productName,
+        headLine: "",
+        subHeadLine: "",
+        heroImage: "",
+        headLineStyle: "",
+        subHeadLineStyle: "",
+        email: "",
+        phone: "",
+        address: "",
+        facebook: "",
+        instagram: "",
+        youtube: "",
       });
       console.log(res);
     }),
@@ -66,9 +85,9 @@ export const postRouter = createTRPCRouter({
         .where(eq(productTable.companyName, input.companyName));
       return res;
     }),
-  callCoze: publicProcedure.query(async () => {
-    return await Service.createWebsite();
-  }),
+  // callCoze: publicProcedure.query(async () => {
+  //   return await Service.createWebsite();
+  // }),
 });
 
 // import { posts } from "~/server/db/schema";

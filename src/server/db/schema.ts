@@ -14,6 +14,7 @@ import { number } from "zod";
 export const companyTable = pgTable("company", {
   companyName: text("companyName").primaryKey(),
   companyWebsite: text("companyWebsite").notNull(),
+  brandName: text("brandName").notNull(),
   headLine: text("headLine").notNull(),
   subHeadLine: text("subHeadLine").notNull(),
   heroImage: text("heroImage").notNull(),
