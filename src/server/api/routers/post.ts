@@ -3,6 +3,7 @@ import { z } from "zod";
 import { db } from "~/server/db";
 import { companyTable, productTable } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
+import { Service } from "./service";
 
 export const postRouter = createTRPCRouter({
   saveCompanyInfo: publicProcedure
@@ -65,12 +66,9 @@ export const postRouter = createTRPCRouter({
         .where(eq(productTable.companyName, input.companyName));
       return res;
     }),
-  // callCoze: publicProcedure
-  //   .input(z.object({      companyName: z.string(),
-  //     companyWebsite: z.string(),
-  //     productName: z.string(),
-  //     productImage: z.string,
-  //     recordId: z.string()})
+  callCoze: publicProcedure.query(async () => {
+    return await LarkService.getCompany();
+  }),
 });
 
 // import { posts } from "~/server/db/schema";
