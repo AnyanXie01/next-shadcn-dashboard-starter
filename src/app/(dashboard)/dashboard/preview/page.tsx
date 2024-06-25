@@ -14,8 +14,8 @@ import ContactSection from "./ContactSection";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 const Preview = async () => {
   // const data = await api.post.getCompanyInfo({ companyName: "11111" });
-  console.log("calling coze");
-  await api.post.callCoze();
+
+  // await api.post.callCoze();
   const data = "data";
   console.log("----------------------------------------------");
   console.log(data);
@@ -39,22 +39,22 @@ const Preview = async () => {
       <Separator className="mb-6 mt-6 w-full bg-slate-200" />
       {/* <div className="h-80 w-full bg-gray-200"> */}
       <div className="mb-6 grid grid-cols-1 gap-20">
-        <div className="w-full border-2 border-slate-600">
+        <div className="w-full border-2 border-slate-600 hover:bg-slate-400 ">
           <HeroSection></HeroSection>
         </div>
-        <div className="w-full border-2 border-slate-600">
+        <div className="w-full border-2 border-slate-600  hover:bg-slate-400">
           <ProductionSection></ProductionSection>
         </div>
-        <div className="w-full border-2 border-slate-600">
+        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
           <CategoriesSection></CategoriesSection>
         </div>
-        <div className="w-full border-2 border-slate-600">
+        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
           <ReviewSection></ReviewSection>
         </div>
-        <div className="w-full border-2 border-slate-600">
+        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
           <FAQSection></FAQSection>
         </div>
-        <div className="w-full border-2 border-slate-600">
+        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
           <ContactSection></ContactSection>
         </div>
       </div>

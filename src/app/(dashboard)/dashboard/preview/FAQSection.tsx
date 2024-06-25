@@ -3,8 +3,8 @@ import React from "react";
 const FAQSection = () => {
   return (
     <div className="font-sans">
-      {" "}
-      <section id="faq" className="bg-gray-100 py-20">
+      {" bg-gray-100"}
+      <section id="faq" className=" py-20">
         <div className="container mx-auto text-center">
           <h2 className="mb-12 text-4xl font-bold">
             Frequently Asked Questions

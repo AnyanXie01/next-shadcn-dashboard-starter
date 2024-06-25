@@ -3,8 +3,8 @@ import React from "react";
 const CategoriesSection = () => {
   return (
     <div className="font-sans">
-      {" "}
-      <section id="category" className="bg-gray-100 py-20">
+      {"bg-gray-100 "}
+      <section id="category" className=" py-20">
         <div className="container mx-auto text-center">
           <h2 className="mb-12 text-4xl font-bold">Categories</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
