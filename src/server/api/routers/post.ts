@@ -145,6 +145,24 @@ export const postRouter = createTRPCRouter({
   callCoze: publicProcedure.query(async () => {
     return await Service.createWebsite();
   }),
+  getByCompanyName: publicProcedure
+    .input(z.string())
+    .query(async ({ input: companyName }) => {
+      const company = await Service.getCompanyByCompanyName({ companyName });
+      const products = await Service.getProductsByCompanyName({ companyName });
+      const categories = await Service.getCategoriesByCompanyName({
+        companyName,
+      });
+      const reviews = await Service.getReviewsByCompanyName({ companyName });
+      const faqs = await Service.getFaqsByCompanyName({ companyName });
+      return {
+        company,
+        products,
+        categories,
+        reviews,
+        faqs,
+      };
+    }),
 });
 
 // import { posts } from "~/server/db/schema";

@@ -12,30 +12,47 @@ export class Service {
   // {
   //   companyName,
   //   companyWebsite,
-  //   productName,
+  //   brandName,
   //   productImage,
   // }: {
   //   companyName: string;
   //   companyWebsite: string;
-  //   productName: string;
+  //   brandName: string;
   //   productImage: string[];
   // }
   static async createWebsite() {
-    const companyName = "keysme";
-    const companyWebsite = 'https\\"://eysme.tmall.com/';
-    const brandName = "机械键盘";
-    const productImage = [
-      "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01Ugq0Pk1gWkd236WSa_!!0-item_pic.jpg_Q75.jpg",
-      "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01fwopeW1gWkdcdZpQ4_!!0-item_pic.jpg_Q75.jpg",
-      "https://gw.alicdn.com/imgextra/i1/2215581294150/O1CN01qKwnaK1gWkd5kn2VY_!!0-item_pic.jpg_Q75.jpg",
-      "https://gw.alicdn.com/imgextra/O1CNA16YuQXV1fCJLBykP9R_!!2236973970-0-psf.jpg_Q75.jpg",
-    ];
+    console.log("calling coze");
+    // const companyName = "keysme";
+    // const companyWebsite = 'https\\"://eysme.tmall.com/';
+    // const brandName = "机械键盘";
+    // const productImage = [
+    //   "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01Ugq0Pk1gWkd236WSa_!!0-item_pic.jpg_Q75.jpg",
+    //   "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01fwopeW1gWkdcdZpQ4_!!0-item_pic.jpg_Q75.jpg",
+    //   "https://gw.alicdn.com/imgextra/i1/2215581294150/O1CN01qKwnaK1gWkd5kn2VY_!!0-item_pic.jpg_Q75.jpg",
+    //   "https://gw.alicdn.com/imgextra/O1CNA16YuQXV1fCJLBykP9R_!!2236973970-0-psf.jpg_Q75.jpg",
+    // ];
 
-    const query = `company_name: ${companyName} company_website: ${companyWebsite} product: ${brandName} 
-          product_image: ${productImage.join(" ")} 我想帮一家${brandName}制造商制作出海独立站内容，制造商名为${companyName}, 有四款不同的${brandName}产品。请调用工作流来来生成对应英文格式的json，并直接返回json结果`;
-    // try {
+    // const query = `company_name: ${companyName} company_website: ${companyWebsite} product: ${brandName}
+    //       product_image: ${productImage.join(" ")} 我想帮一家${brandName}制造商制作出海独立站内容，制造商名为${companyName}, 有四款不同的${brandName}产品。请调用工作流来来生成对应英文格式的json，并直接返回json结果`;
+    const companyName = "Tonepie";
+    const companyWebsite = 'https"://tonepie.com/';
+    const brandName = "自动猫砂盆";
+    const productImage = `[
+        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_1.jpg",
+        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_2.jpg",
+        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_3.jpg",
+        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_4.jpg"
+      ]`;
 
-    // }
+    const QUERY = `
+    {
+      "company_name": ${companyName},
+      "company_website": ${companyWebsite},
+      "product": ${brandName},
+      "product_image": ${productImage}
+    }
+    我想帮一家${brandName}制造商制作出海独立站内容，制造商名为${companyName}, 有四款不同的${brandName}产品。请调用工作流来生成对应英文格式的json，并直接返回json结果`;
+
     const data = await fetch("https://api.coze.cn/open_api/v2/chat", {
       method: "POST",
       headers: {
@@ -50,7 +67,7 @@ export class Service {
         conversation_id: "626262",
         bot_id: "7382153061261279247", // lark: 7382153061261279247, ali: 7383978759340752915
         user: "95962",
-        query: query,
+        query: QUERY,
         stream: false,
       }),
     });
@@ -136,11 +153,11 @@ export class Service {
         productName: product.name,
         productDescription: product.description,
         productLink: "",
-        price: product.price,
-        image: product.image,
-        category: "",
-        inventory: "",
-        reviews: 100,
+        productPrice: product.price,
+        productImage: product.image,
+        productCategory: "",
+        productInventory: 100,
+        productReviews: 100,
         productRatings: 5.0,
       });
     });
@@ -174,5 +191,50 @@ export class Service {
     });
 
     console.log("=== Done ===");
+  }
+  static async getCompanyByCompanyName({
+    companyName,
+  }: {
+    companyName: string;
+  }) {
+    return await db.query.companyTable.findFirst({
+      where: eq(companyTable.companyName, companyName),
+    });
+  }
+
+  static async getProductsByCompanyName({
+    companyName,
+  }: {
+    companyName: string;
+  }) {
+    return await db.query.productTable.findMany({
+      where: eq(productTable.companyName, companyName),
+    });
+  }
+
+  static async getCategoriesByCompanyName({
+    companyName,
+  }: {
+    companyName: string;
+  }) {
+    return await db.query.categoryTable.findMany({
+      where: eq(categoryTable.companyName, companyName),
+    });
+  }
+
+  static async getReviewsByCompanyName({
+    companyName,
+  }: {
+    companyName: string;
+  }) {
+    return await db.query.reviewTable.findMany({
+      where: eq(reviewTable.companyName, companyName),
+    });
+  }
+
+  static async getFaqsByCompanyName({ companyName }: { companyName: string }) {
+    return await db.query.faqTable.findMany({
+      where: eq(faqTable.companyName, companyName),
+    });
   }
 }
