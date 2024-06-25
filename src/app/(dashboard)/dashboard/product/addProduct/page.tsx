@@ -107,26 +107,6 @@ const AddProduct = () => {
               </div>
 
               <Separator className="my-4" />
-              <div className="mb-10 pt-2">
-                <h3 className="mb-4 text-lg font-semibold">Images</h3>
-                <div className="flex h-48 flex-col items-center justify-center border-2 border-dashed border-gray-300 p-4 text-center">
-                  <div className="">
-                    <Input
-                      className="mb-2 ml-10 w-60 text-blue-500"
-                      id="file"
-                      type="file"
-                      onChange={(event) => {
-                        setProductImage(event.target.value);
-                      }}
-                    />
-                    <p className="text-sm text-gray-600">
-                      Or drag and drop files
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <Separator className="my-4" />
 
               <h3 className="mb-4 pt-2 text-lg font-semibold">Price</h3>
               <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">

@@ -71,6 +71,13 @@
       "when": 1719298698127,
       "tag": "0009_lame_sharon_carter",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1719310890286,
+      "tag": "0010_nostalgic_stick",
+      "breakpoints": true
     }
   ]
 }

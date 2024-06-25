@@ -48,7 +48,6 @@ export const postRouter = createTRPCRouter({
         productCategory: z.string(),
         productDescription: z.string(),
         productPrice: z.string(),
-        productImage: z.string(),
         productInventory: z.number(),
         productReviews: z.number(),
         productRatings: z.number(),
@@ -63,7 +62,6 @@ export const postRouter = createTRPCRouter({
         productLink: input.productLink,
         productPrice: input.productPrice,
         productCategory: input.productCategory,
-        productImage: input.productImage,
         productInventory: input.productInventory,
         productReviews: input.productReviews,
         productRatings: input.productRatings,
@@ -81,7 +79,7 @@ export const postRouter = createTRPCRouter({
           productPrice: productTable.productPrice,
           productRatings: productTable.productRatings,
           productReviews: productTable.productReviews,
-          productImage: productTable.productImage,
+          productLink: productTable.productLink,
         })
         .from(productTable)
         .where(eq(productTable.companyName, input.companyName));
