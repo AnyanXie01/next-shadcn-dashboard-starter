@@ -57,6 +57,20 @@
       "when": 1719286134959,
       "tag": "0007_perpetual_chamber",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1719297175773,
+      "tag": "0008_youthful_wendigo",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1719298698127,
+      "tag": "0009_lame_sharon_carter",
+      "breakpoints": true
     }
   ]
 }

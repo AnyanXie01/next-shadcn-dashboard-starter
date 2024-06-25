@@ -34,6 +34,7 @@ export const productTable = pgTable("product", {
   companyName: text("companyName").notNull(),
   productName: text("productName").notNull(),
   productDescription: text("productDescription").notNull(),
+  productLink: text("productLink").notNull(),
   productPrice: text("price").notNull(),
   productImage: text("image").notNull(),
   productCategory: text("category").notNull(),
@@ -77,5 +78,14 @@ export const faqTable = pgTable("faq", {
 }, (table) => {
   return {
     fagCompanyNameIndex: index("faq_company_name_index").on(table.companyName),
+  }
+});
+
+export const lastViewTable = pgTable("lastView", {
+  id: serial("id").primaryKey(),
+  companyName: text("companyName").notNull()
+}, (table) => {
+  return {
+    lastViewCompanyNameIndex: index("company_name_index").on(table.companyName),
   }
 });

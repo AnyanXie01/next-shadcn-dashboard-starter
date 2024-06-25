@@ -1,7 +1,7 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { z } from "zod";
 import { db } from "~/server/db";
-import { companyTable, productTable } from "~/server/db/schema";
+import { companyTable, lastViewTable, productTable } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { Service } from "./service";
 
@@ -44,6 +44,7 @@ export const postRouter = createTRPCRouter({
       z.object({
         companyName: z.string(),
         productName: z.string(),
+        productLink: z.string(),
         productCategory: z.string(),
         productDescription: z.string(),
         productPrice: z.string(),
@@ -59,6 +60,7 @@ export const postRouter = createTRPCRouter({
         companyName: input.companyName,
         productName: input.productName,
         productDescription: input.productDescription,
+        productLink: input.productLink,
         productPrice: input.productPrice,
         productCategory: input.productCategory,
         productImage: input.productImage,
@@ -84,6 +86,59 @@ export const postRouter = createTRPCRouter({
         .from(productTable)
         .where(eq(productTable.companyName, input.companyName));
       return res;
+    }),
+  getCompanyInfo: publicProcedure
+  .input(z.object({ companyName: z.string() }))
+  .query(async ({ input }) => {
+    const res = await db
+      .select({
+        companyName: companyTable.companyName,
+        companyWebsite: companyTable.companyWebsite,
+        brandName: companyTable.brandName
+      })
+      .from(companyTable)
+      .where(eq(companyTable.companyName, input.companyName));
+    return res;
+  }),
+  getImageInfo: publicProcedure
+  .input(z.object({ companyName: z.string() }))
+  .query(async ({ input }) => {
+    const res = await db
+      .select({
+        imageLinks: productTable.productLink
+      })
+      .from(productTable)
+      .where(eq(productTable.companyName, input.companyName));
+    return res;
+  }),
+  getLastView: publicProcedure
+  .query(async () => {
+    const res = await db
+      .select({
+        companyName: lastViewTable.companyName
+      })
+      .from(lastViewTable)
+      .where(eq(lastViewTable.id, 0));
+    return res;
+  }),
+  saveLastView: publicProcedure
+    .input(
+      z.object({
+        companyName: z.string(),
+      }),
+    )
+    .mutation(async ({ input }) => {
+      console.log("save last view info...");
+      const res = await db.insert(lastViewTable).values({
+        id: 0,
+        companyName: input.companyName,
+      }).onConflictDoUpdate({
+        target: lastViewTable.id,
+        set: {
+          companyName: input.companyName
+        }
+      });
+      console.log(res);
     }),
   // callCoze: publicProcedure.query(async () => {
   //   return await Service.createWebsite();

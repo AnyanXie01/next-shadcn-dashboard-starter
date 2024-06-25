@@ -20,8 +20,10 @@ import ProductSaveButton from "@/app/(dashboard)/dashboard/product/addProduct/Pr
 import TagButton from "./TagButton";
 import { number } from "zod";
 import Link from "next/link";
+import { api } from "~/trpc/react";
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
+  const [productLink, setProductLink] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productImage, setProductImage] = useState("");
@@ -29,6 +31,8 @@ const AddProduct = () => {
   const [productReviews, setProductReviews] = useState(10);
   const [productRatings, setProductRatings] = useState(4.8);
   const [productInventory, setProductInventory] = useState(58);
+  const lastViewData = api.post.getLastView.useQuery();
+
   return (
     <div className="pt-6">
       <Link href="/dashboard/product/">
@@ -40,8 +44,9 @@ const AddProduct = () => {
         <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
           <ProductSaveButton
-            companyName="testCompany"
+            companyName= ""
             productName={productName}
+            productLink={productLink}
             productCategory={productCategory}
             productPrice={productPrice}
             productImage={productImage}
@@ -82,7 +87,12 @@ const AddProduct = () => {
                 <label className="mb-2 block text-sm font-medium">
                   Product Link
                 </label>
-                <Input className="w-full" placeholder="http://" />
+                <Input 
+                className="w-full" 
+                placeholder="http://"
+                onChange={(event) => {
+                  setProductLink(event.target.value)
+                }} />
               </div>
 
               <div className="mb-6">
