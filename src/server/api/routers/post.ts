@@ -67,7 +67,7 @@ export const postRouter = createTRPCRouter({
       return res;
     }),
   callCoze: publicProcedure.query(async () => {
-    return await LarkService.getCompany();
+    return await Service.createWebsite();
   }),
 });
 
