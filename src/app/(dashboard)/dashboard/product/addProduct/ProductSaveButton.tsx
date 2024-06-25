@@ -2,7 +2,11 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { api } from "~/trpc/react";
-import { toast } from "sonner";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 
 interface ProductSaveProps {
   companyName: string;
@@ -31,7 +35,6 @@ const ProductSaveButton = ({
     <Button
       className="bg-black text-white"
       onClick={async () => {
-        console.log("clicked save button");
         saveProduct({
           companyName,
           productName,
@@ -43,7 +46,9 @@ const ProductSaveButton = ({
           productReviews,
           productRatings,
         });
-      }}
+        alert("Successfully Add Product")
+      }
+    }
     >
       Save
     </Button>
