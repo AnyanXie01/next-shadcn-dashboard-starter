@@ -13,6 +13,7 @@ import {
 interface ProductSaveProps {
   companyName: string;
   productName: string;
+  productLink: string;
   productCategory: string;
   productPrice: string;
   productDescription: string;
@@ -24,6 +25,7 @@ interface ProductSaveProps {
 const ProductSaveButton = ({
   companyName,
   productName,
+  productLink,
   productCategory,
   productPrice,
   productDescription,
