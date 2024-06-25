@@ -36,6 +36,13 @@ export const postRouter = createTRPCRouter({
         facebook: "",
         instagram: "",
         youtube: "",
+      }).onConflictDoUpdate({
+        target: companyTable.companyName,
+        set: {
+          companyName: input.companyName,
+          companyWebsite: input.companyWebsite,
+          brandName: input.productName,
+        }
       });
       console.log(res);
     }),
