@@ -45,6 +45,7 @@ const ProductSaveButton = ({
           productName,
           productCategory,
           productPrice,
+          productLink,
           productDescription,
           productImage,
           productInventory,

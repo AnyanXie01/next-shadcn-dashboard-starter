@@ -21,6 +21,8 @@ import TagButton from "./TagButton";
 import { number } from "zod";
 import Link from "next/link";
 import { api } from "~/trpc/react";
+import { Service } from "~/server/api/routers/service";
+import { useQuery } from "@tanstack/react-query";
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
   const [productLink, setProductLink] = useState("");
@@ -31,8 +33,7 @@ const AddProduct = () => {
   const [productReviews, setProductReviews] = useState(10);
   const [productRatings, setProductRatings] = useState(4.8);
   const [productInventory, setProductInventory] = useState(58);
-  const lastViewData = api.post.getLastView.useQuery();
-
+  const {data, isLoading, isError } = api.post.getLastView.useQuery();
   return (
     <div className="pt-6">
       <Link href="/dashboard/product/">
@@ -44,7 +45,7 @@ const AddProduct = () => {
         <div className="flex space-x-4 pr-20">
           <Button variant="outline">Cancel</Button>
           <ProductSaveButton
-            companyName= ""
+            companyName={data?.companyName || "Error: No company Name"}
             productName={productName}
             productLink={productLink}
             productCategory={productCategory}
@@ -52,7 +53,7 @@ const AddProduct = () => {
             productImage={productImage}
             productInventory={productInventory}
             productReviews={productReviews}
-            productDescription="This is a delicate cat litter box"
+            productDescription=""
             productRatings={productRatings}
           ></ProductSaveButton>
         </div>
