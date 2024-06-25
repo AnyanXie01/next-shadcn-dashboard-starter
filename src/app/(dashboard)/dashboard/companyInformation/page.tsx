@@ -22,7 +22,8 @@ const GeneralInformation = () => {
   // const productImage
   const [companyName, setCompanyName] = useState("");
   const [companyWebsite, setCompanyWebsite] = useState("");
-  // const [productName, setProductName] = useState('');
+  const [companyProduct, setCompanyProduct] = useState("");
+  const [productImage, setProductImage] = useState([]);
   return (
     <div>
       <div className="flex h-14 items-center justify-between px-8">
@@ -32,6 +33,7 @@ const GeneralInformation = () => {
           <CompanySaveButton
             companyName={companyName}
             companyWebsite={companyWebsite}
+            productName={companyProduct}
           ></CompanySaveButton>
         </div>
       </div>
@@ -79,7 +81,12 @@ const GeneralInformation = () => {
                 <label className="mb-1 block text-sm font-medium text-gray-500">
                   Brand name
                 </label>
-                <Input className="input-color w-full" placeholder="Fei" />
+                <Input 
+                className="input-color w-full" 
+                placeholder="Fei" 
+                onChange={(event)=>{
+                  setCompanyProduct(event.target.value);
+                }}/>
               </div>
 
               <div className="mb-4">
@@ -102,6 +109,9 @@ const GeneralInformation = () => {
                       className="mb-2 ml-10 w-60 text-blue-500"
                       id="file"
                       type="file"
+                      // onChange={(event) => {
+                      //   setProductImage(event.target.value)
+                      // }}
                     />
                     <p className="text-sm text-gray-600">
                       Or drag and drop files
