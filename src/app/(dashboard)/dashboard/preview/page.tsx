@@ -139,7 +139,7 @@ const Preview = async () => {
                     className="rounded-lg bg-white p-6 shadow-lg"
                   >
                     <img
-                      src={product.productImage}
+                      src={product.productLink}
                       alt={product.productName}
                       className="mx-auto mb-4"
                     />
@@ -265,27 +265,6 @@ const Preview = async () => {
           </section>
         </div>
       </div>
-      {/* <div className="h-80 w-full bg-gray-200"> */}
-      {/* <div className="mb-6 grid grid-cols-1 gap-20">
-        <div className="w-full border-2 border-slate-600 hover:bg-slate-400 ">
-          <HeroSection></HeroSection>
-        </div>
-        <div className="w-full border-2 border-slate-600  hover:bg-slate-400">
-          <ProductionSection></ProductionSection>
-        </div>
-        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
-          <CategoriesSection></CategoriesSection>
-        </div>
-        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
-          <ReviewSection></ReviewSection>
-        </div>
-        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
-          <FAQSection></FAQSection>
-        </div>
-        <div className="w-full border-2 border-slate-600 hover:bg-slate-400">
-          <ContactSection></ContactSection>
-        </div>
-      </div> */}
     </div>
   );
 };
