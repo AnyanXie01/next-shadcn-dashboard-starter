@@ -22,27 +22,28 @@ export class Service {
   // }
   static async createWebsite() {
     console.log("calling coze");
-    // const companyName = "keysme";
-    // const companyWebsite = 'https\\"://eysme.tmall.com/';
-    // const brandName = "机械键盘";
-    // const productImage = [
-    //   "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01Ugq0Pk1gWkd236WSa_!!0-item_pic.jpg_Q75.jpg",
-    //   "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01fwopeW1gWkdcdZpQ4_!!0-item_pic.jpg_Q75.jpg",
-    //   "https://gw.alicdn.com/imgextra/i1/2215581294150/O1CN01qKwnaK1gWkd5kn2VY_!!0-item_pic.jpg_Q75.jpg",
-    //   "https://gw.alicdn.com/imgextra/O1CNA16YuQXV1fCJLBykP9R_!!2236973970-0-psf.jpg_Q75.jpg",
-    // ];
+    const companyName = "keysme";
+    const companyWebsite = 'https\\"://eysme.tmall.com/';
+    const brandName = "机械键盘";
+    const productImage = [
+      "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01Ugq0Pk1gWkd236WSa_!!0-item_pic.jpg_Q75.jpg",
+      "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01fwopeW1gWkdcdZpQ4_!!0-item_pic.jpg_Q75.jpg",
+      "https://gw.alicdn.com/imgextra/i1/2215581294150/O1CN01qKwnaK1gWkd5kn2VY_!!0-item_pic.jpg_Q75.jpg",
+      "https://gw.alicdn.com/imgextra/O1CNA16YuQXV1fCJLBykP9R_!!2236973970-0-psf.jpg_Q75.jpg",
+    ];
 
     // const query = `company_name: ${companyName} company_website: ${companyWebsite} product: ${brandName}
     //       product_image: ${productImage.join(" ")} 我想帮一家${brandName}制造商制作出海独立站内容，制造商名为${companyName}, 有四款不同的${brandName}产品。请调用工作流来来生成对应英文格式的json，并直接返回json结果`;
-    const companyName = "Tonepie";
-    const companyWebsite = 'https"://tonepie.com/';
-    const brandName = "自动猫砂盆";
-    const productImage = `[
-        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_1.jpg",
-        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_2.jpg",
-        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_3.jpg",
-        "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_4.jpg"
-      ]`;
+
+    // const companyName = "Tonepie";
+    // const companyWebsite = 'https"://tonepie.com/';
+    // const brandName = "自动猫砂盆";
+    // const productImage = `[
+    //     "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_1.jpg",
+    //     "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_2.jpg",
+    //     "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_3.jpg",
+    //     "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_4.jpg"
+    //   ]`;
 
     const QUERY = `
     {
@@ -65,7 +66,7 @@ export class Service {
       },
       body: JSON.stringify({
         conversation_id: "626262",
-        bot_id: "7382153061261279247", // lark: 7382153061261279247, ali: 7383978759340752915
+        bot_id: "7383978759340752915", // lark: 7382153061261279247, ali: 7383978759340752915
         user: "95962",
         query: QUERY,
         stream: false,
