@@ -14,7 +14,8 @@ import ContactSection from "./ContactSection";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 const Preview = async () => {
   // const data = await api.post.getCompanyInfo({ companyName: "11111" });
-  // await api.post.callCoze();
+  console.log("calling coze");
+  await api.post.callCoze();
   const data = "data";
   console.log("----------------------------------------------");
   console.log(data);
