@@ -1,6 +1,6 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { z } from "zod";
-import { db } from "~/server/db";
+import { db } from "~/server/db/db";
 import {
   companyTable,
   lastViewTable,
@@ -11,7 +11,6 @@ import {
 } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { Service } from "./service";
-import { CaseLower } from "lucide-react";
 
 export const postRouter = createTRPCRouter({
   saveCompanyInfo: publicProcedure
@@ -38,8 +37,8 @@ export const postRouter = createTRPCRouter({
           headLine: "",
           subHeadLine: "",
           heroImage: "",
-          headLineStyle: "",
-          subHeadLineStyle: "",
+          headLineFontSize: "",
+          subHeadLineFontSize: "",
           email: "",
           phone: "",
           address: "",
@@ -146,6 +145,7 @@ export const postRouter = createTRPCRouter({
       })
       .from(lastViewTable)
       .where(eq(lastViewTable.id, 0));
+    console.log("getLastView", res);
     return res[0];
   }),
   saveLastView: publicProcedure
@@ -182,7 +182,7 @@ export const postRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input: { companyName, companyWebsite, brandName } }) => {
-      const productImage: string[] = (
+      const productImage: any[] = (
         await Service.getProductsByCompanyName({ companyName })
       ).map((product) => {
         return product.productLink;

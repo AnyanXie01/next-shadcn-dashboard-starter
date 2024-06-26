@@ -5,20 +5,14 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import GenerateButton from "./GenerateButton";
 import { api } from "~/trpc/server";
-import HeroSection from "./HeroSection";
-import ProductionSection from "./ProductionSection";
-import CategoriesSection from "./CategoriesSection";
-import ReviewSection from "./ReviewSection";
-import FAQSection from "./FAQSection";
-import ContactSection from "./ContactSection";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
+
 const Preview = async () => {
   // const data = await api.post.getCompanyInfo({ companyName: "11111" });
-  const companyName = (await api.post.getLastView())?.companyName || "";
+  const companyName = (await api.post.getLastView())?.companyName ?? "";
   let { company, products, categories, reviews, faqs } =
     await api.post.getByCompanyName(companyName);
-  const companyWebsite = company?.companyWebsite || "";
-  const brandName = company?.brandName || "";
+  const companyWebsite = company?.companyWebsite ?? "";
+  const brandName = company?.brandName ?? "";
   await api.post.callCoze({ companyName, companyWebsite, brandName });
   ({ company, products, categories, reviews, faqs } =
     await api.post.getByCompanyName(companyName));
@@ -113,8 +107,8 @@ const Preview = async () => {
           >
             {/* <section className="bg-blue-500 py-20 text-white"> */}
             <div className="container mx-auto space-y-16 pt-60 text-center">
-              <h1 className={company?.headLineStyle}>{company?.headLine}</h1>
-              <p className={company?.subHeadLineStyle}>
+              <h1 className={company?.headLineFontSize ?? ""}>{company?.headLine}</h1>
+              <p className={company?.subHeadLineFontSize ?? ""}>
                 {company?.subHeadLine}
               </p>
               <p>
@@ -140,8 +134,8 @@ const Preview = async () => {
                     className="rounded-lg bg-white p-6 shadow-lg"
                   >
                     <img
-                      src={product.productLink}
-                      alt={product.productName}
+                      src={product.productLink ?? ""}
+                      alt={product.productName ?? ""}
                       className="mx-auto mb-4"
                     />
                     <h3 className="mb-2 text-2xl font-bold">
@@ -177,8 +171,8 @@ const Preview = async () => {
                     className="rounded-lg bg-white p-6 shadow-lg"
                   >
                     <img
-                      src={category.image}
-                      alt={category.name}
+                      src={category.image ?? ""}
+                      alt={category.name ?? ""}
                       className="mx-auto mb-4"
                     />
                     <h3 className="mb-2 text-2xl font-bold">{category.name}</h3>

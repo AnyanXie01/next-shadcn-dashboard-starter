@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox } from '@/components/ui/checkbox';
 interface ChildrenPros {
-  children: String;
+  children: string;
 }
 const CheckBoxCustome = ({ children }: ChildrenPros) => {
   return (

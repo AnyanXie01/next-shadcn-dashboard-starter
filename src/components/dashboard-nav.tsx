@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 
 import { Icons } from '@/components/icons';
 import { cn } from '@/lib/utils';
-import { NavItem } from '@/types';
-import { Dispatch, SetStateAction } from 'react';
+import { type NavItem } from '@/types';
+import { type Dispatch, type SetStateAction } from 'react';
 import { useSidebar } from '@/hooks/useSidebar';
 import {
   Tooltip,
@@ -39,7 +39,7 @@ export function DashboardNav({
     <nav className="grid items-start gap-2">
       <TooltipProvider>
         {items.map((item, index) => {
-          const Icon = Icons[item.icon || 'arrowRight'];
+          const Icon = Icons[item.icon ?? 'arrowRight'];
           return (
             item.href && (
               <Tooltip key={index}>

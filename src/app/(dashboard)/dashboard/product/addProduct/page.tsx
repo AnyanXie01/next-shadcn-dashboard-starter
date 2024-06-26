@@ -6,9 +6,7 @@ import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -18,11 +16,9 @@ import CheckBoxCustome from "./CheckBoxCustome";
 import { Separator } from "@/components/ui/separator";
 import ProductSaveButton from "@/app/(dashboard)/dashboard/product/addProduct/ProductSaveButton";
 import TagButton from "./TagButton";
-import { number } from "zod";
 import Link from "next/link";
 import { api } from "~/trpc/react";
-import { Service } from "~/server/api/routers/service";
-import { useQuery } from "@tanstack/react-query";
+
 const AddProduct = () => {
   const [productName, setProductName] = useState("");
   const [productLink, setProductLink] = useState("");
@@ -45,7 +41,7 @@ const AddProduct = () => {
         <div className="flex space-x-4 pr-20">
           <Button variant="outline">取消</Button>
           <ProductSaveButton
-            companyName={data?.companyName || "Error: No company Name"}
+            companyName={data?.companyName ?? "Error: No company Name"}
             productName={productName}
             productLink={productLink}
             productCategory={productCategory}

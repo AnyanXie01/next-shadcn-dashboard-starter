@@ -1,9 +1,4 @@
-// Example model schema from the Drizzle docs
-// https://orm.drizzle.team/docs/sql-schema-declaration
-
-import { sql } from "drizzle-orm";
 import { index, pgTable, serial, text, timestamp, real, integer } from "drizzle-orm/pg-core";
-import { number } from "zod";
 
 /**
  * This is an example of how to use the multi-project schema feature of Drizzle ORM. Use the same
@@ -13,32 +8,32 @@ import { number } from "zod";
  */
 export const companyTable = pgTable("company", {
   companyName: text("companyName").primaryKey(),
-  companyWebsite: text("companyWebsite").notNull(),
-  brandName: text("brandName").notNull(),
-  headLine: text("headLine").notNull(),
-  subHeadLine: text("subHeadLine").notNull(),
-  heroImage: text("heroImage").notNull(),
-  headLineStyle: text("headLineFontSize").notNull(),
-  subHeadLineStyle: text("subHeadLineFontSize").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  address: text("address").notNull(),
-  facebook: text("facebook").notNull(),
-  instagram: text("instagram").notNull(),
-  youtube: text("youtube").notNull(),
-  createdAt: timestamp("createdAt").notNull().defaultNow(),
+  companyWebsite: text("companyWebsite"),
+  brandName: text("brandName"),
+  headLine: text("headLine"),
+  subHeadLine: text("subHeadLine"),
+  heroImage: text("heroImage"),
+  headLineFontSize: text("headLineFontSize"),
+  subHeadLineFontSize: text("subHeadLineFontSize"),
+  email: text("email"),
+  phone: text("phone"),
+  address: text("address"),
+  facebook: text("facebook"),
+  instagram: text("instagram"),
+  youtube: text("youtube"),
+  createdAt: timestamp("createdAt").defaultNow(),
 });
 
 export const productTable = pgTable("product", {
   id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  productName: text("productName").notNull(),
-  productDescription: text("productDescription").notNull(),
-  productLink: text("productLink").notNull(),
-  productPrice: text("price").notNull(),
-  productCategory: text("category").notNull(),
-  productInventory: integer("inventory").notNull(),
-  productReviews: integer("reviews").notNull(),
+  companyName: text("companyName"),
+  productName: text("productName"),
+  productDescription: text("productDescription"),
+  productLink: text("productLink"),
+  productPrice: text("price"),
+  productCategory: text("category"),
+  productInventory: integer("inventory"),
+  productReviews: integer("reviews"),
   productRatings: real("productRatings").default(0.0)
 }, (table) => {
   return {
@@ -48,10 +43,10 @@ export const productTable = pgTable("product", {
 
 export const categoryTable = pgTable("category", {
   id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  name: text("name").notNull(),
-  description: text("description").notNull(),
-  image: text("image").notNull(),
+  companyName: text("companyName"),
+  name: text("name"),
+  description: text("description"),
+  image: text("image"),
 }, (table) => {
   return {
     categoryCompanyNameIndex: index("category_company_name_index").on(table.companyName),
@@ -60,9 +55,9 @@ export const categoryTable = pgTable("category", {
 
 export const reviewTable = pgTable("review", {
   id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  name: text("name").notNull(),
-  review: text("review").notNull(),
+  companyName: text("companyName"),
+  name: text("name"),
+  review: text("review"),
 }, (table) => {
   return {
     reviewCompanyNameIndex: index("review_company_name_index").on(table.companyName),
@@ -71,9 +66,9 @@ export const reviewTable = pgTable("review", {
 
 export const faqTable = pgTable("faq", {
   id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull(),
-  question: text("question").notNull(),
-  answer: text("answer").notNull(),
+  companyName: text("companyName"),
+  question: text("question"),
+  answer: text("answer"),
 }, (table) => {
   return {
     fagCompanyNameIndex: index("faq_company_name_index").on(table.companyName),
@@ -82,7 +77,7 @@ export const faqTable = pgTable("faq", {
 
 export const lastViewTable = pgTable("lastView", {
   id: serial("id").primaryKey(),
-  companyName: text("companyName").notNull()
+  companyName: text("companyName")
 }, (table) => {
   return {
     lastViewCompanyNameIndex: index("company_name_index").on(table.companyName),
