@@ -165,7 +165,7 @@ export const postRouter = createTRPCRouter({
         .onConflictDoUpdate({
           target: lastViewTable.id,
           set: {
-            companyName: input.companyName,
+            companyName: input.companyName.toLocaleLowerCase(),
           },
         });
       console.log(res);
