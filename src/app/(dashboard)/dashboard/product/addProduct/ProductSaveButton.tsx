@@ -4,11 +4,7 @@ import { Button } from "@/components/ui/button";
 import { api } from "~/trpc/react";
 import { useToast } from "~/components/ui/use-toast";
 
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface ProductSaveProps {
   companyName: string;
@@ -35,7 +31,7 @@ const ProductSaveButton = ({
   productRatings,
 }: ProductSaveProps) => {
   const { mutate: saveProduct } = api.post.saveProductInfo.useMutation();
-  const { toast } = useToast()
+  const { toast } = useToast();
   return (
     <Button
       className="bg-black text-white"
@@ -52,12 +48,11 @@ const ProductSaveButton = ({
           productRatings,
         });
         toast({
-          description: "Your product info has been saved."
-        })
-      }
-    }
+          description: "产品信息已保存。",
+        });
+      }}
     >
-      Save
+      保存
     </Button>
   );
 };

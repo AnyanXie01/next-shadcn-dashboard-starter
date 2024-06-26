@@ -28,11 +28,11 @@ const CompanySaveButton = ({
         saveCompany({ companyName, companyWebsite, productName });
 
         toast({
-          description: "Your company nfo has been saved.",
+          description: "公司信息已保存。",
         });
       }}
     >
-      Save
+      保存
     </Button>
   );
 };

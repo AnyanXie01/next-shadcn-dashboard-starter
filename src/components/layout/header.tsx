@@ -39,21 +39,21 @@ export default function Header() {
               <NavigationMenuItem>
                 <Link href="/dashboard">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Dashboard
+                    控制面板
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/dashboard/companyInformation">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Company Information
+                    公司信息
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/dashboard/product">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Products
+                    产品
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -61,7 +61,7 @@ export default function Header() {
               <NavigationMenuItem>
                 <Link href="/dashboard/preview">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    Preview
+                    预览
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>

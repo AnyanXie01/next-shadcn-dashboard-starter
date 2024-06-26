@@ -33,7 +33,7 @@ const AddProduct = () => {
   const [productReviews, setProductReviews] = useState(10);
   const [productRatings, setProductRatings] = useState(4.8);
   const [productInventory, setProductInventory] = useState(58);
-  const {data, isLoading, isError } = api.post.getLastView.useQuery();
+  const { data, isLoading, isError } = api.post.getLastView.useQuery();
   return (
     <div className="pt-6">
       <Link href="/dashboard/product/">
@@ -41,9 +41,9 @@ const AddProduct = () => {
       </Link>
 
       <div className="flex h-14 items-center justify-between px-4">
-        <h1 className="text-3xl font-bold">Add Product</h1>
+        <h1 className="text-3xl font-bold">添加商品</h1>
         <div className="flex space-x-4 pr-20">
-          <Button variant="outline">Cancel</Button>
+          <Button variant="outline">取消</Button>
           <ProductSaveButton
             companyName={data?.companyName || "Error: No company Name"}
             productName={productName}
@@ -64,16 +64,16 @@ const AddProduct = () => {
           <div className="lg:col-span-2">
             <div className="mb-10">
               <div className="mb-6 flex items-center gap-x-10">
-                <h2 className="text-lg font-semibold">Information</h2>
+                <h2 className="text-lg font-semibold">信息</h2>
                 <div className="flex items-center space-x-2">
                   <Switch className=" data-[state=checked]:bg-blue-400 data-[state=unchecked]:bg-blue-100" />
-                  <span>promoted</span>
+                  <span>推广</span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
-                  Product Name
+                  产品名称
                 </label>
                 <Input
                   className="w-full"
@@ -86,19 +86,20 @@ const AddProduct = () => {
 
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
-                  Product Link
+                  图片链接
                 </label>
-                <Input 
-                className="w-full" 
-                placeholder="http://"
-                onChange={(event) => {
-                  setProductLink(event.target.value)
-                }} />
+                <Input
+                  className="w-full"
+                  placeholder="http://"
+                  onChange={(event) => {
+                    setProductLink(event.target.value);
+                  }}
+                />
               </div>
 
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
-                  Product Description
+                  产品概况
                 </label>
                 <Textarea
                   className="w-full"
@@ -108,11 +109,11 @@ const AddProduct = () => {
 
               <Separator className="my-4" />
 
-              <h3 className="mb-4 pt-2 text-lg font-semibold">Price</h3>
+              <h3 className="mb-4 pt-2 text-lg font-semibold">价格</h3>
               <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium">
-                    Product Price
+                    产品价格
                   </label>
                   <Input
                     className="w-full"
@@ -125,14 +126,14 @@ const AddProduct = () => {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium">
-                    Discount Price
+                    折扣价格
                   </label>
                   <Input className="w-full" placeholder="Price at Discount" />
                 </div>
               </div>
 
               <Separator className="my-4" />
-              <h3 className="mb-4 pt-2 text-lg font-semibold">Shipping</h3>
+              <h3 className="mb-4 pt-2 text-lg font-semibold">运输</h3>
               <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium">
@@ -160,7 +161,7 @@ const AddProduct = () => {
 
           <div className="lg:col-span-1">
             <div className="mb-10">
-              <h2 className="mb-4 text-lg font-semibold">Categories</h2>
+              <h2 className="mb-4 text-lg font-semibold">类目</h2>
               <div className="flex flex-col space-y-5">
                 <CheckBoxCustome>Women</CheckBoxCustome>
                 <CheckBoxCustome>Men</CheckBoxCustome>
@@ -174,7 +175,7 @@ const AddProduct = () => {
             </div>
 
             <div className="mb-10">
-              <h2 className="mb-4 text-lg font-semibold">Tags</h2>
+              <h2 className="mb-4 text-lg font-semibold">标签</h2>
               <div className="mb-4">
                 <label className="mb-2 block text-sm font-medium">
                   Add Tags

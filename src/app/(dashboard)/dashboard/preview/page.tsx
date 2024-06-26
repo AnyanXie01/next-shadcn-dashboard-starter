@@ -31,7 +31,7 @@ const Preview = async () => {
         </div>
         <div className="flex items-center gap-2">
           <Button variant="outline" className="ml-auto">
-            Cancel
+            取消
           </Button>
           <Link href="/dashboard/product/addProduct">
             <Button className="ml-auto bg-black text-white">Publish</Button>

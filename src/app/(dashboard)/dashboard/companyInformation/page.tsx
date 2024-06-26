@@ -27,9 +27,10 @@ const GeneralInformation = () => {
   return (
     <div>
       <div className="flex h-14 items-center justify-between px-8">
-        <h1 className="text-3xl font-bold">General Information</h1>
+        <h1 className="text-3xl font-bold">基本信息</h1>
+        {/* General Information */}
         <div className="flex space-x-4 pr-20">
-          <Button variant="outline">Cancel</Button>
+          <Button variant="outline">取消</Button>
           <CompanySaveButton
             companyName={companyName}
             companyWebsite={companyWebsite}
@@ -42,12 +43,13 @@ const GeneralInformation = () => {
         <div className="grid grid-cols-1 gap-24 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <div className="mb-6 grid grid-cols-1 gap-y-4">
-              <h2 className="mb-2 text-lg font-semibold">Brand Information</h2>
-
+              <h2 className="mb-2 text-lg font-semibold">品牌信息</h2>
+              {/* Brand Information */}
               <div className="mb-4">
                 <label className="mb-1 block text-sm font-medium text-gray-500">
-                  Company Name
+                  公司名称
                 </label>
+                {/* Company Name */}
                 <Input
                   className="input-color w-full"
                   placeholder="Fei qi chu hai"
@@ -59,8 +61,9 @@ const GeneralInformation = () => {
 
               <div className="mb-4">
                 <label className="mb-1 block text-sm font-medium text-gray-500">
-                  Official website
+                  网址
                 </label>
+                {/* Official website */}
                 <Input
                   className="input-color w-full"
                   placeholder="http://"
@@ -70,28 +73,29 @@ const GeneralInformation = () => {
                 />
               </div>
 
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label className="mb-1 block text-sm font-medium text-gray-500">
                   Shop website
                 </label>
                 <Input className="input-color w-full" placeholder="http://" />
-              </div>
+              </div> */}
 
               <div className="mb-4">
                 <label className="mb-1 block text-sm font-medium text-gray-500">
-                  Brand name
+                  产品名称
                 </label>
-                <Input 
-                className="input-color w-full" 
-                placeholder="Fei" 
-                onChange={(event)=>{
-                  setCompanyProduct(event.target.value);
-                }}/>
+                <Input
+                  className="input-color w-full"
+                  placeholder="Fei"
+                  onChange={(event) => {
+                    setCompanyProduct(event.target.value);
+                  }}
+                />
               </div>
 
               <div className="mb-4">
                 <label className="mb-1 block text-sm font-medium text-gray-500">
-                  Brand Description
+                  产品简介
                 </label>
                 <Textarea
                   className="input-color h-24 w-full"
@@ -102,7 +106,7 @@ const GeneralInformation = () => {
               <Separator className="w-full bg-slate-200" />
 
               <div className="mb-6">
-                <h3 className="mb-2 text-lg font-semibold">Style</h3>
+                <h3 className="mb-2 text-lg font-semibold">风格</h3>
                 <div className="flex h-48 flex-col items-center justify-center border-2 border-dashed border-gray-300 p-4 text-center">
                   <div className="">
                     <Input
@@ -123,17 +127,17 @@ const GeneralInformation = () => {
               <Separator className="w-full bg-slate-200" />
 
               <div>
-                <h3 className="mb-2 text-lg font-semibold">Competitors</h3>
+                <h3 className="mb-2 text-lg font-semibold">竞品</h3>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
                     <label className="mb-1 block text-sm font-medium">
-                      Competitor1
+                      竞品
                     </label>
                     <Input className="w-full" placeholder="Fei" />
                   </div>
                   <div>
                     <label className="mb-1 block text-sm font-medium">
-                      Competitor1
+                      竞品
                     </label>
                     <Select>
                       <SelectTrigger className="SelectTrigger w-full">
@@ -152,20 +156,18 @@ const GeneralInformation = () => {
 
           <div className="lg:col-span-1">
             <div className="mb-4">
-              <h2 className="mb-2 text-lg font-semibold ">
-                Company Information
-              </h2>
+              <h2 className="mb-2 text-lg font-semibold ">联系信息</h2>
 
               <div className="mb-4">
                 <label className="mb-1 block text-sm font-medium text-gray-500">
-                  Title
+                  联系人
                 </label>
                 <Input className="w-full" />
               </div>
 
               <div className="mb-4">
                 <label className="mb-1 block text-sm font-medium text-gray-500">
-                  Email
+                  邮箱
                 </label>
                 <Input className="w-full" />
               </div>
