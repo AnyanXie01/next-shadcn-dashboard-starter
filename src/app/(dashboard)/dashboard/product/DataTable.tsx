@@ -42,13 +42,13 @@ import {
 import { api } from '~/trpc/react';
 
 type Payment = {
-  productName: string;
-  productCategory: string;
-  productInventory: number; // Changed from string to number
-  productPrice: string;
+  productName: string | null;
+  productCategory: string | null;
+  productInventory: number | null;
+  productPrice: string | null;
   productRatings: number | null;
   productReviews: number | null;
-  productLink: string; // Added this field if it exists in your data
+  productLink: string | null;
 };
 
 const columns: ColumnDef<Payment>[] = [
@@ -79,7 +79,7 @@ const columns: ColumnDef<Payment>[] = [
     header: 'Product',
     cell: ({ row }) => (
       <div className="image-align">
-        <img src={row.original.productLink} className="product-image" />
+        <img src={row.original.productLink?? ""} className="product-image" />
         <div className="product-info">
           <span className="product-name">{row.getValue('productName')}</span>
           <span className="product-category">{row.original.productCategory}</span>
@@ -134,7 +134,7 @@ export function DataTable() {
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const { data: lastReviewData, isLoading: lastReviewLoading, isError: lastReviewError } = api.post.getLastView.useQuery();
-  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: lastReviewData?.companyName.toLocaleLowerCase() ?? "Error"});
+  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: lastReviewData?.companyName?.toLocaleLowerCase() ?? "Error"});
   const table = useReactTable({
     data: data ?? [],    
     columns,
