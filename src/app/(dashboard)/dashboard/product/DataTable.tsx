@@ -142,7 +142,7 @@ export function DataTable() {
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const { data: lastReviewData, isLoading: lastReviewLoading, isError: lastReviewError } = api.post.getLastView.useQuery();
-  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: lastReviewData?.companyName || "Error"});
+  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: lastReviewData?.companyName.toLocaleLowerCase() || "Error"});
   const table = useReactTable({
     data: data || [],    
     columns,
