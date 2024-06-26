@@ -14,13 +14,14 @@ import ContactSection from "./ContactSection";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 const Preview = async () => {
   // const data = await api.post.getCompanyInfo({ companyName: "11111" });
+  const companyName = (await api.post.getLastView())?.companyName || "";
   await api.post.callCoze();
+  // const companyName = "Tonepie";
+  // const companyName = "keysme";
   const { company, products, categories, reviews, faqs } =
-    await api.post.getByCompanyName("Tonepie");
-  const companyName = "Tonepie";
-  const data = "data";
+    await api.post.getByCompanyName(companyName);
   console.log("------------------preview----------------------------");
-  console.log(data);
+  console.log(companyName);
   return (
     <div className="px-4">
       <div className="flex h-14 items-center justify-between">
