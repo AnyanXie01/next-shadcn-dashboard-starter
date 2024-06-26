@@ -1,6 +1,6 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { z } from "zod";
-import { db } from "~/server/db";
+import { db } from "~/server/db/db";
 import {
   companyTable,
   lastViewTable,
