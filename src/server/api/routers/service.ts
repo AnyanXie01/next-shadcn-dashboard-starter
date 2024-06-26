@@ -11,34 +11,25 @@ import {
   lastViewTable,
 } from "@/server/db/schema";
 export class Service {
-  // {
-  //   companyName,
-  //   companyWebsite,
-  //   brandName,
-  //   productImage,
-  // }: {
-  //   companyName: string;
-  //   companyWebsite: string;
-  //   brandName: string;
-  //   productImage: string[];
-  // }
-  static async createWebsite() {
+  static async createWebsite({
+    companyName,
+    companyWebsite,
+    brandName,
+    productImage,
+  }: {
+    companyName: string;
+    companyWebsite: string;
+    brandName: string;
+    productImage: string[];
+  }) {
     console.log("calling coze");
-    const companyName = (await api.post.getLastView())?.companyName || "";
-    // const companyName = "keysme";
-    const { company, products, categories, reviews, faqs } =
-      await api.post.getByCompanyName(companyName);
-    const companyWebsite = company?.companyWebsite;
-    const brandName = company?.brandName;
-    // const companyWebsite = 'https\\"://eysme.tmall.com/';
-    // const brandName = "机械键盘";
-    // const productImage = products
-    const productImage = [
-      "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01Ugq0Pk1gWkd236WSa_!!0-item_pic.jpg_Q75.jpg",
-      "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01fwopeW1gWkdcdZpQ4_!!0-item_pic.jpg_Q75.jpg",
-      "https://gw.alicdn.com/imgextra/i1/2215581294150/O1CN01qKwnaK1gWkd5kn2VY_!!0-item_pic.jpg_Q75.jpg",
-      "https://gw.alicdn.com/imgextra/i4/2215581294150/O1CN01SPuFSD1gWkd6OmRy0_!!0-item_pic.jpg_Q75.jpg",
-    ];
+
+    // const productImage = [
+    //   "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01Ugq0Pk1gWkd236WSa_!!0-item_pic.jpg_Q75.jpg",
+    //   "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01fwopeW1gWkdcdZpQ4_!!0-item_pic.jpg_Q75.jpg",
+    //   "https://gw.alicdn.com/imgextra/i1/2215581294150/O1CN01qKwnaK1gWkd5kn2VY_!!0-item_pic.jpg_Q75.jpg",
+    //   "https://gw.alicdn.com/imgextra/i4/2215581294150/O1CN01SPuFSD1gWkd6OmRy0_!!0-item_pic.jpg_Q75.jpg",
+    // ];
 
     // const query = `company_name: ${companyName} company_website: ${companyWebsite} product: ${brandName}
     //       product_image: ${productImage.join(" ")} 我想帮一家${brandName}制造商制作出海独立站内容，制造商名为${companyName}, 有四款不同的${brandName}产品。请调用工作流来来生成对应英文格式的json，并直接返回json结果`;
@@ -52,7 +43,10 @@ export class Service {
     //     "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_3.jpg",
     //     "https://pub-342b3b8ce2b7489f9956e8987813d7c6.r2.dev/litter_4.jpg"
     //   ]`;
-
+    console.log(companyName);
+    productImage.map((p) => {
+      console.log(p);
+    });
     const QUERY = `
     {
       "company_name": ${companyName},

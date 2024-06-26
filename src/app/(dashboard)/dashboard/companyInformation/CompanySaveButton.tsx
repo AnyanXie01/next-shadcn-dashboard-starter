@@ -18,16 +18,18 @@ const CompanySaveButton = ({
 }: CompanySaveButtonProps) => {
   const { mutate: saveCompany } = api.post.saveCompanyInfo.useMutation();
   const { mutate: saveLastView } = api.post.saveLastView.useMutation();
-  const { toast } = useToast()
+  const { toast } = useToast();
   return (
     <Button
       className="bg-black text-white"
       onClick={async () => {
-        saveCompany({companyName, companyWebsite, productName})
-        saveLastView({companyName})
+        console.log("------------company save button------------");
+        saveLastView({ companyName });
+        saveCompany({ companyName, companyWebsite, productName });
+
         toast({
-          description: "Your company nfo has been saved."
-        })
+          description: "Your company nfo has been saved.",
+        });
       }}
     >
       Save

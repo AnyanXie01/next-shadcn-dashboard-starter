@@ -22,29 +22,32 @@ export const postRouter = createTRPCRouter({
         input.companyWebsite,
         input.productName,
       );
-      const res = await db.insert(companyTable).values({
-        companyName: input.companyName.toLocaleLowerCase(),
-        companyWebsite: input.companyWebsite,
-        brandName: input.productName,
-        headLine: "",
-        subHeadLine: "",
-        heroImage: "",
-        headLineStyle: "",
-        subHeadLineStyle: "",
-        email: "",
-        phone: "",
-        address: "",
-        facebook: "",
-        instagram: "",
-        youtube: "",
-      }).onConflictDoUpdate({
-        target: companyTable.companyName,
-        set: {
-          companyName: input.companyName,
+      const res = await db
+        .insert(companyTable)
+        .values({
+          companyName: input.companyName.toLocaleLowerCase(),
           companyWebsite: input.companyWebsite,
           brandName: input.productName,
-        }
-      });
+          headLine: "",
+          subHeadLine: "",
+          heroImage: "",
+          headLineStyle: "",
+          subHeadLineStyle: "",
+          email: "",
+          phone: "",
+          address: "",
+          facebook: "",
+          instagram: "",
+          youtube: "",
+        })
+        .onConflictDoUpdate({
+          target: companyTable.companyName,
+          set: {
+            companyName: input.companyName,
+            companyWebsite: input.companyWebsite,
+            brandName: input.productName,
+          },
+        });
       console.log(res);
     }),
   saveProductInfo: publicProcedure
@@ -148,9 +151,30 @@ export const postRouter = createTRPCRouter({
         });
       console.log(res);
     }),
-  callCoze: publicProcedure.query(async () => {
-    return await Service.createWebsite();
+  callCozeTest: publicProcedure.query(async () => {
+    // return await Service.createWebsite();
   }),
+  callCoze: publicProcedure
+    .input(
+      z.object({
+        companyName: z.string(),
+        companyWebsite: z.string(),
+        brandName: z.string(),
+      }),
+    )
+    .query(async ({ input: { companyName, companyWebsite, brandName } }) => {
+      const productImage: string[] = (
+        await Service.getProductsByCompanyName({ companyName })
+      ).map((product) => {
+        return product.productLink;
+      });
+      return await Service.createWebsite({
+        companyName,
+        companyWebsite,
+        brandName,
+        productImage,
+      });
+    }),
   getByCompanyName: publicProcedure
     .input(z.string())
     .query(async ({ input: companyName }) => {
