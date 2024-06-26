@@ -37,8 +37,8 @@ export const postRouter = createTRPCRouter({
           headLine: "",
           subHeadLine: "",
           heroImage: "",
-          headLineStyle: "",
-          subHeadLineStyle: "",
+          headLineFontSize: "",
+          subHeadLineFontSize: "",
           email: "",
           phone: "",
           address: "",
@@ -182,7 +182,7 @@ export const postRouter = createTRPCRouter({
       }),
     )
     .query(async ({ input: { companyName, companyWebsite, brandName } }) => {
-      const productImage: string[] = (
+      const productImage: any[] = (
         await Service.getProductsByCompanyName({ companyName })
       ).map((product) => {
         return product.productLink;

@@ -93,42 +93,42 @@ export class Service {
       },
     });
 
-    // await db
-    //   .insert(companyTable)
-    //   .values({
-    //     companyName,
-    //     companyWebsite,
-    //     brandName,
-    //     headLine,
-    //     subHeadLine,
-    //     heroImage,
-    //     headLineStyle: "text-5xl font-bold mb-4",
-    //     subHeadLineStyle: "mb-8 text-xl",
-    //     email,
-    //     phone,
-    //     address,
-    //     facebook,
-    //     instagram,
-    //     youtube,
-    //   })
-    //   .onConflictDoUpdate({
-    //     target: companyTable.companyName,
-    //     set: {
-    //       headLine,
-    //       companyWebsite,
-    //       brandName,
-    //       subHeadLine,
-    //       heroImage,
-    //       headLineStyle: "text-5xl font-bold mb-4",
-    //       subHeadLineStyle: "mb-8 text-xl",
-    //       email,
-    //       phone,
-    //       address,
-    //       facebook,
-    //       instagram,
-    //       youtube,
-    //     },
-    //   });
+    await db
+      .insert(companyTable)
+      .values({
+        companyName,
+        companyWebsite,
+        brandName,
+        headLine,
+        subHeadLine,
+        heroImage,
+        headLineFontSize: "text-5xl font-bold mb-4",
+        subHeadLineFontSize: "mb-8 text-xl",
+        email,
+        phone,
+        address,
+        facebook,
+        instagram,
+        youtube,
+      })
+      .onConflictDoUpdate({
+        target: companyTable.companyName,
+        set: {
+          headLine,
+          companyWebsite,
+          brandName,
+          subHeadLine,
+          heroImage,
+          headLineFontSize: "text-5xl font-bold mb-4",
+          subHeadLineFontSize: "mb-8 text-xl",
+          email,
+          phone,
+          address,
+          facebook,
+          instagram,
+          youtube,
+        },
+      });
 
     await db
       .delete(productTable)
