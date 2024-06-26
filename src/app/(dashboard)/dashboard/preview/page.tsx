@@ -27,9 +27,7 @@ const Preview = async () => {
           <Button variant="outline" className="ml-auto">
             取消
           </Button>
-          <Link href="/dashboard/product/addProduct">
-            <Button className="ml-auto bg-black text-white">Publish</Button>
-          </Link>
+          <Button className="ml-auto bg-black text-white">Publish</Button>
           <GenerateButton></GenerateButton>
         </div>
       </div>
@@ -107,7 +105,7 @@ const Preview = async () => {
           >
             {/* <section className="bg-blue-500 py-20 text-white"> */}
             <div className="container mx-auto space-y-16 pt-60 text-center">
-              <h1 className={company?.headLineFontSize ?? ""}>{company?.headLine}</h1>
+              <h1 className="text-6xl">{company?.headLine}</h1>
               <p className={company?.subHeadLineFontSize ?? ""}>
                 {company?.subHeadLine}
               </p>
@@ -232,7 +230,7 @@ const Preview = async () => {
           {/* Contact Section */}
           <section id="contact" className="py-12">
             <div className="container mx-auto px-6 text-center">
-              <h2 className="mb-8 text-3xl font-bold">Contact Us</h2>
+              <div className="mb-8 text-3xl font-bold">Contact Us</div>
               <p className="mb-4">Email: {company?.email}</p>
               <p className="mb-4">Phone: {company?.phone}</p>
               <p className="mb-4">Address: {company?.address}</p>

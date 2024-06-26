@@ -40,7 +40,7 @@ export class Service {
       method: "POST",
       headers: {
         Authorization:
-          "Bearer pat_nsTrE39t0UOBXq9sH2D0qT7XpHi8K5NJgGURHtQuMVwnMBW1OzltMgYeTPa1cIt7",
+          "Bearer pat_hSWQrV1TmLn3ij2SABWZAcAOaLJydjvS18MjkpZLhmwSSEuuKRKWDEAbsjU05GYA",
         "Content-Type": "application/json",
         Accept: "*/*",
         Host: "api.coze.cn",
@@ -48,7 +48,7 @@ export class Service {
       },
       body: JSON.stringify({
         conversation_id: "626262",
-        bot_id: "7384730443289575424", // lark: 7382153061261279247, ali: 7383978759340752915
+        bot_id: "7383978759340752915", // lark: 7382153061261279247, ali: 7383978759340752915
         user: "95962",
         query: QUERY,
         stream: false,
@@ -142,21 +142,21 @@ export class Service {
     await db.delete(faqTable).where(eq(faqTable.companyName, companyName));
 
     const rawProducts = o.productsSection.contentImagery;
-    // await Promise.all(
-    //   rawProducts.map(async (product) => {
-    //     await db.insert(productTable).values({
-    //       companyName,
-    //       productName: product.name,
-    //       productDescription: product.description,
-    //       productLink: product.image,
-    //       productPrice: product.price,
-    //       productCategory: "",
-    //       productInventory: 100,
-    //       productReviews: 100,
-    //       productRatings: 5.0,
-    //     });
-    //   })
-    // );
+    await Promise.all(
+      rawProducts.map(async (product) => {
+        await db.insert(productTable).values({
+          companyName,
+          productName: product.name,
+          productDescription: product.description,
+          productLink: product.image,
+          productPrice: product.price.toString(),
+          productCategory: "",
+          productInventory: 100,
+          productReviews: 100,
+          productRatings: 5.0,
+        });
+      })
+    );
 
     const rawCategories = o.categoriesSection.categories;
     await Promise.all(
