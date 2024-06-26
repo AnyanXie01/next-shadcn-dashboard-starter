@@ -3,6 +3,7 @@ import Link from 'next/link';
 import UserAuthForm from '@/components/forms/user-auth-form';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Authentication',
@@ -55,7 +56,12 @@ export default function AuthenticationPage() {
               Enter your email below to create your account
             </p>
           </div>
-          <UserAuthForm />
+          {/* <UserAuthForm /> */}
+          <Link href="/dashboard" className="flex items-center justify-center bg-black text-white">
+              <Button>
+                Login
+              </Button>
+            </Link>
           <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{' '}
             <Link
