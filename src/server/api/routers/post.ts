@@ -40,9 +40,20 @@ export const postRouter = createTRPCRouter({
       }).onConflictDoUpdate({
         target: companyTable.companyName,
         set: {
-          companyName: input.companyName,
+          companyName: input.companyName.toLocaleLowerCase(),
           companyWebsite: input.companyWebsite,
           brandName: input.productName,
+          headLine: "",
+          subHeadLine: "",
+          heroImage: "",
+          headLineStyle: "",
+          subHeadLineStyle: "",
+          email: "",
+          phone: "",
+          address: "",
+          facebook: "",
+          instagram: "",
+          youtube: "",
         }
       });
       console.log(res);
