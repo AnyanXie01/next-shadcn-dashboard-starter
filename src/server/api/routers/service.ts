@@ -1,12 +1,14 @@
 import { type response } from "./response.type";
 import { db } from "~/server/db";
 import { eq } from "drizzle-orm";
+import { api } from "~/trpc/server";
 import {
   categoryTable,
   companyTable,
   faqTable,
   productTable,
   reviewTable,
+  lastViewTable,
 } from "@/server/db/schema";
 export class Service {
   // {
@@ -22,14 +24,20 @@ export class Service {
   // }
   static async createWebsite() {
     console.log("calling coze");
-    const companyName = "keysme";
-    const companyWebsite = 'https\\"://eysme.tmall.com/';
-    const brandName = "机械键盘";
+    const companyName = (await api.post.getLastView())?.companyName || "";
+    // const companyName = "keysme";
+    const { company, products, categories, reviews, faqs } =
+      await api.post.getByCompanyName(companyName);
+    const companyWebsite = company?.companyWebsite;
+    const brandName = company?.brandName;
+    // const companyWebsite = 'https\\"://eysme.tmall.com/';
+    // const brandName = "机械键盘";
+    // const productImage = products
     const productImage = [
       "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01Ugq0Pk1gWkd236WSa_!!0-item_pic.jpg_Q75.jpg",
       "https://gw.alicdn.com/imgextra/i3/2215581294150/O1CN01fwopeW1gWkdcdZpQ4_!!0-item_pic.jpg_Q75.jpg",
       "https://gw.alicdn.com/imgextra/i1/2215581294150/O1CN01qKwnaK1gWkd5kn2VY_!!0-item_pic.jpg_Q75.jpg",
-      "https://gw.alicdn.com/imgextra/O1CNA16YuQXV1fCJLBykP9R_!!2236973970-0-psf.jpg_Q75.jpg",
+      "https://gw.alicdn.com/imgextra/i4/2215581294150/O1CN01SPuFSD1gWkd6OmRy0_!!0-item_pic.jpg_Q75.jpg",
     ];
 
     // const query = `company_name: ${companyName} company_website: ${companyWebsite} product: ${brandName}
@@ -236,5 +244,14 @@ export class Service {
     return await db.query.faqTable.findMany({
       where: eq(faqTable.companyName, companyName),
     });
+  }
+  static async getLastCompanyName() {
+    const lastCompanyName = await db.query.lastViewTable.findFirst({
+      where: eq(lastViewTable.id, 0),
+    });
+    if (!lastCompanyName) {
+      throw new Error("LastView table does not contain lastCompanyName");
+    }
+    return lastCompanyName?.companyName;
   }
 }

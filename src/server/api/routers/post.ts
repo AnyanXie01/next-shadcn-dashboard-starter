@@ -90,13 +90,13 @@ export const postRouter = createTRPCRouter({
     .query(async ({ input }) => {
       const res = await db
         .select({
-          companyName: companyTable.companyName,
+          // companyName: companyTable.companyName,
           companyWebsite: companyTable.companyWebsite,
           brandName: companyTable.brandName,
         })
         .from(companyTable)
         .where(eq(companyTable.companyName, input.companyName));
-      return res;
+      return res[0];
     }),
   getImageInfo: publicProcedure
     .input(z.object({ companyName: z.string() }))
