@@ -15,16 +15,13 @@ import { ScrollArea } from "@radix-ui/react-scroll-area";
 const Preview = async () => {
   // const data = await api.post.getCompanyInfo({ companyName: "11111" });
   const companyName = (await api.post.getLastView())?.companyName || "";
-  console.log("--------------------------------");
-  // const companyName = "Tonepie";
-  // const companyName = "keysme";
-  const { company, products, categories, reviews, faqs } =
+  let { company, products, categories, reviews, faqs } =
     await api.post.getByCompanyName(companyName);
   const companyWebsite = company?.companyWebsite || "";
   const brandName = company?.brandName || "";
   await api.post.callCoze({ companyName, companyWebsite, brandName });
-  console.log("------------------preview----------------------------");
-  console.log(companyName);
+  ({ company, products, categories, reviews, faqs } =
+    await api.post.getByCompanyName(companyName));
   return (
     <div className="px-4">
       <div className="flex h-14 items-center justify-between">

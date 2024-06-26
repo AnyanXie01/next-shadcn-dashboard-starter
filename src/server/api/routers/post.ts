@@ -141,7 +141,7 @@ export const postRouter = createTRPCRouter({
         .insert(lastViewTable)
         .values({
           id: 0,
-          companyName: input.companyName,
+          companyName: input.companyName.toLocaleLowerCase(),
         })
         .onConflictDoUpdate({
           target: lastViewTable.id,

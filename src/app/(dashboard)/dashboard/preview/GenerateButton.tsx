@@ -9,10 +9,10 @@ const GenerateButton = () => {
   return (
     <Button
       className="ml-auto bg-black text-white"
-      // onClick={async () => {
-      //   console.log("calling coze");
-      //   await api.post.callCoze();
-      // }}
+      onClick={async () => {
+        console.log("calling coze");
+        // await api.post.callCoze();
+      }}
     >
       Generate
     </Button>
