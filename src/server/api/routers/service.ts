@@ -1,7 +1,6 @@
 import { type response } from "./response.type";
 import { db } from "~/server/db";
 import { eq } from "drizzle-orm";
-import { api } from "~/trpc/server";
 import {
   categoryTable,
   companyTable,
@@ -10,6 +9,7 @@ import {
   reviewTable,
   lastViewTable,
 } from "@/server/db/schema";
+import { type MyData } from "./type";
 export class Service {
   static async createWebsite({
     companyName,
@@ -32,7 +32,7 @@ export class Service {
       "company_name": ${companyName},
       "company_website": ${companyWebsite},
       "product": ${brandName},
-      "product_image": ${productImage}
+      "product_image": ${productImage.join(" ")}
     }
     我想帮一家${brandName}制造商制作出海独立站内容，制造商名为${companyName}, 有四款不同的${brandName}产品。请调用工作流来生成对应英文格式的json，并直接返回json结果`;
 
@@ -68,7 +68,8 @@ export class Service {
     console.log("Finish");
     const regex = /```json([\s\S]*?)```/g;
     const trimmedJson = regex.exec(json)![1] ?? "";
-    const o = JSON.parse(trimmedJson);
+
+    const o = JSON.parse(trimmedJson) as MyData;
 
     const headLine = o.heroSection.contentImagery.headline;
     const subHeadLine = o.heroSection.contentImagery.subheadline;
@@ -85,9 +86,9 @@ export class Service {
       .insert(companyTable)
       .values({
         companyName,
-        headLine,
         companyWebsite,
         brandName,
+        headLine,
         subHeadLine,
         heroImage,
         headLineStyle: "text-5xl font-bold mb-4",
@@ -130,47 +131,55 @@ export class Service {
     await db.delete(faqTable).where(eq(faqTable.companyName, companyName));
 
     const rawProducts = o.productsSection.contentImagery;
-    rawProducts.map(async (product: any) => {
-      await db.insert(productTable).values({
-        companyName,
-        productName: product.name,
-        productDescription: product.description,
-        productLink: product.image,
-        productPrice: product.price,
-        productCategory: "",
-        productInventory: 100,
-        productReviews: 100,
-        productRatings: 5.0,
-      });
-    });
+    await Promise.all(
+      rawProducts.map(async (product) => {
+        await db.insert(productTable).values({
+          companyName,
+          productName: product.name,
+          productDescription: product.description,
+          productLink: product.image,
+          productPrice: product.price,
+          productCategory: "",
+          productInventory: 100,
+          productReviews: 100,
+          productRatings: 5.0,
+        });
+      })
+    );
 
     const rawCategories = o.categoriesSection.categories;
-    rawCategories.map(async (category: any) => {
-      await db.insert(categoryTable).values({
-        companyName,
-        name: category.name,
-        description: category.description,
-        image: category.image,
-      });
-    });
+    await Promise.all(
+      rawCategories.map(async (category) => {
+        await db.insert(categoryTable).values({
+          companyName,
+          name: category.name,
+          description: category.description,
+          image: category.image,
+        });
+      })
+    );
 
     const rawReviews = o.reviewsSection.contentImagery.testimonials;
-    rawReviews.map(async (review: any) => {
-      await db.insert(reviewTable).values({
-        companyName,
-        name: review.name,
-        review: review.review,
-      });
-    });
+    await Promise.all(
+      rawReviews.map(async (review) => {
+        await db.insert(reviewTable).values({
+          companyName,
+          name: review.name,
+          review: review.review,
+        });
+      })
+    );
 
     const rawFaqs = o.faqSection.contentImagery["questions-answers"];
-    rawFaqs.map(async (faq: any) => {
-      await db.insert(faqTable).values({
-        companyName,
-        question: faq.question,
-        answer: faq.answer,
-      });
-    });
+    await Promise.all(
+      rawFaqs.map(async (faq) => {
+        await db.insert(faqTable).values({
+          companyName,
+          question: faq.question,
+          answer: faq.answer,
+        });
+      })
+    );
 
     console.log("=== Done ===");
   }

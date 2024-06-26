@@ -11,7 +11,6 @@ import {
 } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { Service } from "./service";
-import { CaseLower } from "lucide-react";
 
 export const postRouter = createTRPCRouter({
   saveCompanyInfo: publicProcedure
@@ -146,6 +145,7 @@ export const postRouter = createTRPCRouter({
       })
       .from(lastViewTable)
       .where(eq(lastViewTable.id, 0));
+    console.log("getLastView", res);
     return res[0];
   }),
   saveLastView: publicProcedure

@@ -5,20 +5,14 @@ import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import GenerateButton from "./GenerateButton";
 import { api } from "~/trpc/server";
-import HeroSection from "./HeroSection";
-import ProductionSection from "./ProductionSection";
-import CategoriesSection from "./CategoriesSection";
-import ReviewSection from "./ReviewSection";
-import FAQSection from "./FAQSection";
-import ContactSection from "./ContactSection";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
+
 const Preview = async () => {
   // const data = await api.post.getCompanyInfo({ companyName: "11111" });
-  const companyName = (await api.post.getLastView())?.companyName || "";
+  const companyName = (await api.post.getLastView())?.companyName ?? "";
   let { company, products, categories, reviews, faqs } =
     await api.post.getByCompanyName(companyName);
-  const companyWebsite = company?.companyWebsite || "";
-  const brandName = company?.brandName || "";
+  const companyWebsite = company?.companyWebsite ?? "";
+  const brandName = company?.brandName ?? "";
   await api.post.callCoze({ companyName, companyWebsite, brandName });
   ({ company, products, categories, reviews, faqs } =
     await api.post.getByCompanyName(companyName));
