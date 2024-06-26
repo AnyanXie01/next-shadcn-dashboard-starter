@@ -1,7 +1,14 @@
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { z } from "zod";
 import { db } from "~/server/db";
-import { companyTable, lastViewTable, productTable } from "~/server/db/schema";
+import {
+  companyTable,
+  lastViewTable,
+  productTable,
+  categoryTable,
+  reviewTable,
+  faqTable,
+} from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { Service } from "./service";
 import { CaseLower } from "lucide-react";
@@ -48,6 +55,18 @@ export const postRouter = createTRPCRouter({
             brandName: input.productName,
           },
         });
+      await db
+        .delete(productTable)
+        .where(eq(productTable.companyName, input.companyName));
+      await db
+        .delete(categoryTable)
+        .where(eq(categoryTable.companyName, input.companyName));
+      await db
+        .delete(reviewTable)
+        .where(eq(reviewTable.companyName, input.companyName));
+      await db
+        .delete(faqTable)
+        .where(eq(faqTable.companyName, input.companyName));
       console.log(res);
     }),
   saveProductInfo: publicProcedure
