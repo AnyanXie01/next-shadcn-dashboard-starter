@@ -4,6 +4,7 @@ import { db } from "~/server/db";
 import { companyTable, lastViewTable, productTable } from "~/server/db/schema";
 import { eq } from "drizzle-orm";
 import { Service } from "./service";
+import { CaseLower } from "lucide-react";
 
 export const postRouter = createTRPCRouter({
   saveCompanyInfo: publicProcedure
@@ -22,7 +23,7 @@ export const postRouter = createTRPCRouter({
         input.productName,
       );
       const res = await db.insert(companyTable).values({
-        companyName: input.companyName,
+        companyName: input.companyName.toLocaleLowerCase(),
         companyWebsite: input.companyWebsite,
         brandName: input.productName,
         headLine: "",
@@ -63,7 +64,7 @@ export const postRouter = createTRPCRouter({
     .mutation(async ({ input }) => {
       console.log("save product info...");
       const res = await db.insert(productTable).values({
-        companyName: input.companyName,
+        companyName: input.companyName.toLocaleLowerCase(),
         productName: input.productName,
         productDescription: input.productDescription,
         productLink: input.productLink,
