@@ -82,70 +82,70 @@ export class Service {
     const instagram = socialMediaLinks[1];
     const youtube = socialMediaLinks[2];
 
-    await db
-      .insert(companyTable)
-      .values({
-        companyName,
-        companyWebsite,
-        brandName,
-        headLine,
-        subHeadLine,
-        heroImage,
-        headLineStyle: "text-5xl font-bold mb-4",
-        subHeadLineStyle: "mb-8 text-xl",
-        email,
-        phone,
-        address,
-        facebook,
-        instagram,
-        youtube,
-      })
-      .onConflictDoUpdate({
-        target: companyTable.companyName,
-        set: {
-          headLine,
-          companyWebsite,
-          brandName,
-          subHeadLine,
-          heroImage,
-          headLineStyle: "text-5xl font-bold mb-4",
-          subHeadLineStyle: "mb-8 text-xl",
-          email,
-          phone,
-          address,
-          facebook,
-          instagram,
-          youtube,
-        },
-      });
-
-    await db
-      .delete(productTable)
-      .where(eq(productTable.companyName, companyName));
-    await db
-      .delete(categoryTable)
-      .where(eq(categoryTable.companyName, companyName));
-    await db
-      .delete(reviewTable)
-      .where(eq(reviewTable.companyName, companyName));
-    await db.delete(faqTable).where(eq(faqTable.companyName, companyName));
-
-    const rawProducts = o.productsSection.contentImagery;
-    await Promise.all(
-      rawProducts.map(async (product) => {
-        await db.insert(productTable).values({
-          companyName,
-          productName: product.name,
-          productDescription: product.description,
-          productLink: product.image,
-          productPrice: product.price,
-          productCategory: "",
-          productInventory: 100,
-          productReviews: 100,
-          productRatings: 5.0,
-        });
-      })
-    );
+    // await db
+    //   .insert(companyTable)
+    //   .values({
+    //     companyName,
+    //     companyWebsite,
+    //     brandName,
+    //     headLine,
+    //     subHeadLine,
+    //     heroImage,
+    //     headLineStyle: "text-5xl font-bold mb-4",
+    //     subHeadLineStyle: "mb-8 text-xl",
+    //     email,
+    //     phone,
+    //     address,
+    //     facebook,
+    //     instagram,
+    //     youtube,
+    //   })
+    //   .onConflictDoUpdate({
+    //     target: companyTable.companyName,
+    //     set: {
+    //       headLine,
+    //       companyWebsite,
+    //       brandName,
+    //       subHeadLine,
+    //       heroImage,
+    //       headLineStyle: "text-5xl font-bold mb-4",
+    //       subHeadLineStyle: "mb-8 text-xl",
+    //       email,
+    //       phone,
+    //       address,
+    //       facebook,
+    //       instagram,
+    //       youtube,
+    //     },
+    //   });
+    //
+    // await db
+    //   .delete(productTable)
+    //   .where(eq(productTable.companyName, companyName));
+    // await db
+    //   .delete(categoryTable)
+    //   .where(eq(categoryTable.companyName, companyName));
+    // await db
+    //   .delete(reviewTable)
+    //   .where(eq(reviewTable.companyName, companyName));
+    // await db.delete(faqTable).where(eq(faqTable.companyName, companyName));
+    //
+    // const rawProducts = o.productsSection.contentImagery;
+    // await Promise.all(
+    //   rawProducts.map(async (product) => {
+    //     await db.insert(productTable).values({
+    //       // companyName,
+    //       productName: product.name,
+    //       productDescription: product.description,
+    //       productLink: product.image,
+    //       productPrice: product.price,
+    //       productCategory: "",
+    //       productInventory: 100,
+    //       productReviews: 100,
+    //       productRatings: 5.0,
+    //     });
+    //   })
+    // );
 
     const rawCategories = o.categoriesSection.categories;
     await Promise.all(
