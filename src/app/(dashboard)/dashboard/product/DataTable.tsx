@@ -2,10 +2,10 @@
 
 import * as React from 'react';
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
+  type ColumnDef,
+  type ColumnFiltersState,
+  type SortingState,
+  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -13,7 +13,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -21,9 +21,6 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
@@ -39,12 +36,7 @@ import {
 
 import {
   Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
   PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
 } from '@/components/ui/pagination';
 
 import { api } from '~/trpc/react';
@@ -99,10 +91,10 @@ const columns: ColumnDef<Payment>[] = [
     accessorKey: 'productInventory',
     header: () => <div>Inventory</div>,
     cell: ({ row }) => {
-      const inventory = row.getValue('productInventory') as number;
+      const inventory = row.getValue('productInventory');
       return (
         <div>
-          {inventory > 0 ? `${inventory} in Stock` : 'Out of stock'}
+          {inventory as number > 0 ? `${inventory as number} in Stock` : 'Out of stock'}
         </div>
       );
     },
@@ -129,7 +121,7 @@ const columns: ColumnDef<Payment>[] = [
     header: () => <div className="text-right">Rating</div>,
     cell: ({ row }) => {
       const rating = parseFloat(row.getValue('productRatings'));
-      const reviews = row.original.productReviews as number;
+      const reviews = row.original.productReviews!;
       const formatted_rating = rating.toFixed(1);
       return <div className="text-right font-medium">{`${formatted_rating} (${reviews} reviews)`}</div>;
     },
@@ -142,9 +134,9 @@ export function DataTable() {
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
   const { data: lastReviewData, isLoading: lastReviewLoading, isError: lastReviewError } = api.post.getLastView.useQuery();
-  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: lastReviewData?.companyName.toLocaleLowerCase() || "Error"});
+  const { data, isLoading, isError } = api.post.getProductInfo.useQuery({ companyName: lastReviewData?.companyName.toLocaleLowerCase() ?? "Error"});
   const table = useReactTable({
-    data: data || [],    
+    data: data ?? [],    
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,

@@ -40,7 +40,7 @@ export class Service {
       method: "POST",
       headers: {
         Authorization:
-          "Bearer pat_hSWQrV1TmLn3ij2SABWZAcAOaLJydjvS18MjkpZLhmwSSEuuKRKWDEAbsjU05GYA",
+          "Bearer pat_nsTrE39t0UOBXq9sH2D0qT7XpHi8K5NJgGURHtQuMVwnMBW1OzltMgYeTPa1cIt7",
         "Content-Type": "application/json",
         Accept: "*/*",
         Host: "api.coze.cn",
@@ -48,12 +48,13 @@ export class Service {
       },
       body: JSON.stringify({
         conversation_id: "626262",
-        bot_id: "7383978759340752915", // lark: 7382153061261279247, ali: 7383978759340752915
+        bot_id: "7384730443289575424", // lark: 7382153061261279247, ali: 7383978759340752915
         user: "95962",
         query: QUERY,
         stream: false,
       }),
     });
+    console.log("data", data);
     const res = (await data.json()) as response;
     console.log(res);
     let json = "";
@@ -81,6 +82,16 @@ export class Service {
     const facebook = socialMediaLinks[0];
     const instagram = socialMediaLinks[1];
     const youtube = socialMediaLinks[2];
+
+    await db.insert(lastViewTable).values({
+      id: 0,
+      companyName,
+    }).onConflictDoUpdate({
+      target: lastViewTable.id,
+      set: {
+        companyName,
+      },
+    });
 
     // await db
     //   .insert(companyTable)
