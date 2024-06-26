@@ -107,8 +107,8 @@ const Preview = async () => {
           >
             {/* <section className="bg-blue-500 py-20 text-white"> */}
             <div className="container mx-auto space-y-16 pt-60 text-center">
-              <h1 className={company?.headLineStyle}>{company?.headLine}</h1>
-              <p className={company?.subHeadLineStyle}>
+              <h1 className={company?.headLineFontSize ?? ""}>{company?.headLine}</h1>
+              <p className={company?.subHeadLineFontSize ?? ""}>
                 {company?.subHeadLine}
               </p>
               <p>
@@ -134,8 +134,8 @@ const Preview = async () => {
                     className="rounded-lg bg-white p-6 shadow-lg"
                   >
                     <img
-                      src={product.productLink}
-                      alt={product.productName}
+                      src={product.productLink ?? ""}
+                      alt={product.productName ?? ""}
                       className="mx-auto mb-4"
                     />
                     <h3 className="mb-2 text-2xl font-bold">
@@ -171,8 +171,8 @@ const Preview = async () => {
                     className="rounded-lg bg-white p-6 shadow-lg"
                   >
                     <img
-                      src={category.image}
-                      alt={category.name}
+                      src={category.image ?? ""}
+                      alt={category.name ?? ""}
                       className="mx-auto mb-4"
                     />
                     <h3 className="mb-2 text-2xl font-bold">{category.name}</h3>
