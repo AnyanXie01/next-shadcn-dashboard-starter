@@ -29,7 +29,7 @@ const AddProduct = () => {
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productImage, setProductImage] = useState("");
-  const [productCategory, setProductCategory] = useState("Cat Litter Box");
+  const [productCategory, setProductCategory] = useState("");
   const [productReviews, setProductReviews] = useState(10);
   const [productRatings, setProductRatings] = useState(4.8);
   const [productInventory, setProductInventory] = useState(58);
