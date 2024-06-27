@@ -48,7 +48,7 @@ export class Service {
       },
       body: JSON.stringify({
         conversation_id: "626262",
-        bot_id: "7383978759340752915", // lark: 7382153061261279247, ali: 7383978759340752915
+        bot_id: "7382153061261279247", // lark: 7382153061261279247, ali: 7383978759340752915
         user: "95962",
         query: QUERY,
         stream: false,
