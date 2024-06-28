@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import ThemeToggle from "@/components/layout/ThemeToggle/theme-toggle";
 import { cn } from "@/lib/utils";
@@ -20,10 +20,10 @@ export default function Header() {
   const { toast } = useToast();
   const handleLinkClick = () => {
     toast({
-      description: "正在生成预览，请稍后",
+      description: "Loading, please wait",
       // You might need to specify duration, status, or other properties based on your toast setup
     });
-  }
+  };
   return (
     <div className="supports-backdrop-blur:bg-background/60 bg-background/95 fixed left-0 right-0 top-0 z-20 border-b backdrop-blur">
       <nav className="flex h-14 items-center justify-between px-4">
@@ -50,33 +50,29 @@ export default function Header() {
               <NavigationMenuItem>
                 <Link href="/dashboard">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    控制面板
+                    Dashboard
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/dashboard/companyInformation">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    公司信息
+                    Company Information
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/dashboard/product">
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    产品
+                    Products
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Link 
-                href="/dashboard/preview"
-                onClick={
-                  handleLinkClick
-                }>
+                <Link href="/dashboard/preview" onClick={handleLinkClick}>
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    预览
+                    Preview
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>

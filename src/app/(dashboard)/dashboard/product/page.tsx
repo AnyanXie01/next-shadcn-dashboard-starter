@@ -30,18 +30,18 @@ const page = () => {
     <ScrollArea className="h-full">
       <div className="px-4">
         <div className="flex h-14 items-center justify-between">
-          <div className="text-3xl font-bold">产品概览</div>
+          <div className="text-3xl font-bold">Products</div>
           <div className="flex items-center gap-2">
             <Button variant="outline" className="ml-auto">
-              <ImportDropDown>导入</ImportDropDown>
+              <ImportDropDown>Import</ImportDropDown>
               <ChevronDown className="ml-2 h-4 w-4" />
             </Button>
             <Button variant="outline" className="ml-auto">
-              导出
+              Export
             </Button>
             <Link href="/dashboard/product/addProduct">
               <Button className="ml-auto bg-black text-white">
-                + 添加商品
+                + Add Products
               </Button>
             </Link>
           </div>

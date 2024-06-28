@@ -48,11 +48,11 @@ const ProductSaveButton = ({
           productRatings,
         });
         toast({
-          description: "产品信息已保存。",
+          description: "Product Info saved",
         });
       }}
     >
-      保存
+      Save
     </Button>
   );
 };

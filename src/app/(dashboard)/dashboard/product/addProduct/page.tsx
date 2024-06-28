@@ -37,9 +37,9 @@ const AddProduct = () => {
       </Link>
 
       <div className="flex h-14 items-center justify-between px-4">
-        <h1 className="text-3xl font-bold">添加商品</h1>
+        <h1 className="text-3xl font-bold">Add Product</h1>
         <div className="flex space-x-4 pr-20">
-          <Button variant="outline">取消</Button>
+          <Button variant="outline">Cancel</Button>
           <ProductSaveButton
             companyName={data?.companyName ?? "Error: No company Name"}
             productName={productName}
@@ -60,16 +60,16 @@ const AddProduct = () => {
           <div className="lg:col-span-2">
             <div className="mb-10">
               <div className="mb-6 flex items-center gap-x-10">
-                <h2 className="text-lg font-semibold">信息</h2>
+                <h2 className="text-lg font-semibold">Information</h2>
                 <div className="flex items-center space-x-2">
                   <Switch className=" data-[state=checked]:bg-blue-400 data-[state=unchecked]:bg-blue-100" />
-                  <span>推广</span>
+                  <span>promoted</span>
                 </div>
               </div>
 
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
-                  产品名称
+                  Product name
                 </label>
                 <Input
                   className="w-full"
@@ -82,7 +82,7 @@ const AddProduct = () => {
 
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
-                  图片链接
+                  Product Link
                 </label>
                 <Input
                   className="w-full"
@@ -95,7 +95,7 @@ const AddProduct = () => {
 
               <div className="mb-6">
                 <label className="mb-2 block text-sm font-medium">
-                  产品概况
+                  Product Description
                 </label>
                 <Textarea
                   className="w-full"
@@ -105,11 +105,11 @@ const AddProduct = () => {
 
               <Separator className="my-4" />
 
-              <h3 className="mb-4 pt-2 text-lg font-semibold">价格</h3>
+              <h3 className="mb-4 pt-2 text-lg font-semibold">Price</h3>
               <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium">
-                    产品价格
+                    Product Price
                   </label>
                   <Input
                     className="w-full"
@@ -122,14 +122,14 @@ const AddProduct = () => {
                 </div>
                 <div>
                   <label className="mb-2 block text-sm font-medium">
-                    折扣价格
+                    Discount Price
                   </label>
                   <Input className="w-full" placeholder="Price at Discount" />
                 </div>
               </div>
 
               <Separator className="my-4" />
-              <h3 className="mb-4 pt-2 text-lg font-semibold">运输</h3>
+              <h3 className="mb-4 pt-2 text-lg font-semibold">Shipping</h3>
               <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
                   <label className="mb-2 block text-sm font-medium">
@@ -157,7 +157,7 @@ const AddProduct = () => {
 
           <div className="lg:col-span-1">
             <div className="mb-10">
-              <h2 className="mb-4 text-lg font-semibold">类目</h2>
+              <h2 className="mb-4 text-lg font-semibold">Categories</h2>
               <div className="flex flex-col space-y-5">
                 <CheckBoxCustome>Women</CheckBoxCustome>
                 <CheckBoxCustome>Men</CheckBoxCustome>
@@ -171,7 +171,7 @@ const AddProduct = () => {
             </div>
 
             <div className="mb-10">
-              <h2 className="mb-4 text-lg font-semibold">标签</h2>
+              <h2 className="mb-4 text-lg font-semibold">Tags</h2>
               <div className="mb-4">
                 <label className="mb-2 block text-sm font-medium">
                   Add Tags
